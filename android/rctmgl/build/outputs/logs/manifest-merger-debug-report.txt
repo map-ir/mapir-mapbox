@@ -1,0 +1,49 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/src/main/AndroidManifest.xml:1:1-5:12
+INJECTED from /Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/src/main/AndroidManifest.xml:1:1-5:12
+INJECTED from /Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/src/main/AndroidManifest.xml:1:1-5:12
+INJECTED from /Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/src/main/AndroidManifest.xml:1:1-5:12
+INJECTED from /Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/src/main/AndroidManifest.xml:1:1-5:12
+INJECTED from /Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/src/main/AndroidManifest.xml:1:1-5:12
+INJECTED from /Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/src/main/AndroidManifest.xml:1:1-5:12
+	package
+		ADDED from /Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/src/main/AndroidManifest.xml:1:70-97
+		INJECTED from /Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/src/main/AndroidManifest.xml
+		INJECTED from /Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/src/main/AndroidManifest.xml
+		ADDED from /Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/src/main/AndroidManifest.xml:1:1-5:12
+		INJECTED from /Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/src/main/AndroidManifest.xml
+		ADDED from /Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/src/main/AndroidManifest.xml:1:1-5:12
+		INJECTED from /Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/src/main/AndroidManifest.xml:1:11-69
+uses-permission#android.permission.INTERNET
+ADDED from /Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/src/main/AndroidManifest.xml:2:5-67
+	android:name
+		ADDED from /Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/src/main/AndroidManifest.xml:2:22-64
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from /Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/src/main/AndroidManifest.xml:3:5-78
+	android:name
+		ADDED from /Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/src/main/AndroidManifest.xml:3:22-76
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from /Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/src/main/AndroidManifest.xml:4:5-80
+	android:name
+		ADDED from /Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/src/main/AndroidManifest.xml:4:22-78
+uses-sdk
+INJECTED from /Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/src/main/AndroidManifest.xml
+INJECTED from /Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/src/main/AndroidManifest.xml
+INJECTED from /Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/src/main/AndroidManifest.xml
+INJECTED from /Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/src/main/AndroidManifest.xml
+		ADDED from /Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/src/main/AndroidManifest.xml
+		INJECTED from /Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/src/main/AndroidManifest.xml
+		ADDED from /Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/src/main/AndroidManifest.xml
+		INJECTED from /Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/src/main/AndroidManifest.xml
