@@ -27,7 +27,7 @@ Add project under `dependencies`
 
 ```
 dependencies {
-    compile project(':mapbox-react-native-mapbox-gl')
+    implementation project(':mapbox-react-native-mapbox-gl')
 }
 ```
 
@@ -42,7 +42,7 @@ Include project, so gradle knows where to find the project
 
 ```
 include ':mapbox-react-native-mapbox-gl'
-project(':mapbox-react-native-mapbox-gl').projectDir = new File(rootProject.projectDir, '../node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl')
+project(':mapbox-react-native-mapbox-gl').projectDir = new File(rootProject.projectDir, '../node_modules/mapir-mapbox/android/rctmgl')
 ```
 
 ### MainApplication.java
