@@ -1,7 +1,7 @@
 {
   "name": "mapir-mapbox",
   "description": "A mapir Mapbox GL react native module for creating custom maps",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "author": "Reyhane Masumi",
   "main": "./javascript/index.js",
   "keywords": [
@@ -14,7 +14,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mapbox/react-native-mapbox-gl.git"
+    "url": "git+https://github.com/map-ir/mapir-mapbox"
   },
   "scripts": {
     "fetch:ios:sdk": "node ./scripts/download-mapbox-gl-native-ios-if-on-mac.js 3.7.8",
@@ -92,7 +92,7 @@
   "bugs": {
     "url": "https://github.com/mapbox/react-native-mapbox-gl/issues"
   },
-  "homepage": "https://github.com/mapbox/react-native-mapbox-gl#readme",
+  "homepage": "https://github.com/map-ir/mapir-mapbox",
   "directories": {
     "doc": "docs"
   },

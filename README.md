@@ -28,18 +28,13 @@ Not a Mapbox user yet? [Sign up for an account here](https://www.mapbox.com/sign
 
 **Git**
 ```
-git clone git@github.com:mapbox/react-native-mapbox-gl.git
-cd react-native-mapbox-gl
-```
-
-**Yarn**
-```
-yarn add @mapbox/react-native-mapbox-gl
+git clone git@github.com:map-ir/mapir-mapbox.git
+cd mapir-mapbox
 ```
 
 **Npm**
 ```
-npm install @mapbox/react-native-mapbox-gl --save
+npm install mapir-mapbox
 ```
 
 ## Installation Guides
@@ -81,6 +76,3 @@ We have a feature request open with Expo if you want to see it get in show your 
 ## Developer Group
 
 Have a question or need some help? Join our [Gitter developer group](https://gitter.im/react-native-mapbox-gl/Lobby)!
-
-## License
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fmapbox%2Freact-native-mapbox-gl.svg?type=large)](https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fmapbox%2Freact-native-mapbox-gl?ref=badge_large)

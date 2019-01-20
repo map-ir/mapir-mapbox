@@ -8,7 +8,7 @@
 
 #import "RCTMGLPointAnnotation.h"
 #import "RCTMGLUtils.h"
-#import "UIView+React.h"
+#import <React/UIView+React.h>
 
 const float CENTER_X_OFFSET_BASE = -0.5f;
 const float CENTER_Y_OFFSET_BASE = -0.5f;
