@@ -272,11 +272,11 @@ public class RCTMGLModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void setAccessToken(final String accessToken) {
+    public void initAndroid(final String accessToken) {
         mReactContext.runOnUiQueueThread(new Runnable() {
             @Override
             public void run() {
-                Mapbox.getInstance(getReactApplicationContext(), accessToken);
+                Mapbox.getInstance(getReactApplicationContext(), "pk.mapir");
             }
         });
     }
@@ -293,13 +293,11 @@ public class RCTMGLModule extends ReactContextBaseJavaModule {
         mReactContext.runOnUiQueueThread(new Runnable() {
             @Override
             public void run() {
-                //MapboxTelemetry.getInstance().setTelemetryEnabled(telemetryEnabled);
             }
         });
     }
 
     @ReactMethod
     public void isTelemetryEnabled(Promise promise) {
-        //promise.resolve(MapboxTelemetry.getInstance().isTelemetryEnabled());
     }
 }
