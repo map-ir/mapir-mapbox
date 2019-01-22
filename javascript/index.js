@@ -100,4 +100,6 @@ MapboxGL.Animated = {
   BackgroundLayer: Animated.createAnimatedComponent(BackgroundLayer),
 };
 
+MapboxGL.initAndroid();
+
 export default MapboxGL;

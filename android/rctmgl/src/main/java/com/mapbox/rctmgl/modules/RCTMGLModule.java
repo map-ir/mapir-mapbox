@@ -272,7 +272,7 @@ public class RCTMGLModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void initAndroid(final String accessToken) {
+    public void initAndroid() {
         mReactContext.runOnUiQueueThread(new Runnable() {
             @Override
             public void run() {
