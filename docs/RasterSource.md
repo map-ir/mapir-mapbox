@@ -1,4 +1,4 @@
-## <MapboxGL.RasterSource />
+## <Mapir.RasterSource />
 ### RasterSource is a map content source that supplies raster image tiles to be shown on the map.<br/>The location of and metadata about the tiles are defined either by an option dictionary<br/>or by an external file that conforms to the TileJSON specification.
 
 ### props
