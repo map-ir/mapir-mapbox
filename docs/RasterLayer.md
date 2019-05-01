@@ -1,4 +1,4 @@
-## <MapboxGL.RasterLayer />
+## <Mapir.RasterLayer />
 ### 
 
 ### props
