@@ -1,4 +1,4 @@
-## <MapboxGL.LineLayer />
+## <MapirL.LineLayer />
 ### LineLayer is a style layer that renders one or more stroked polylines on the map.
 
 ### props
