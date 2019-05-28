@@ -2,6 +2,7 @@ package com.mapbox.rctmgl.modules;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Promise;
@@ -12,6 +13,7 @@ import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.common.MapBuilder;
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.constants.Style;
+import com.mapbox.mapboxsdk.http.HttpRequestUtil;
 import com.mapbox.mapboxsdk.offline.OfflineRegion;
 import com.mapbox.mapboxsdk.plugins.locationlayer.LocationLayerMode;
 import com.mapbox.mapboxsdk.storage.FileSource;
@@ -23,9 +25,17 @@ import com.mapbox.rctmgl.events.constants.EventTypes;
 import com.mapbox.rctmgl.location.UserLocationVerticalAlignment;
 import com.mapbox.rctmgl.location.UserTrackingMode;
 import com.mapbox.services.android.telemetry.MapboxTelemetry;
+import okhttp3.Dispatcher;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.logging.HttpLoggingInterceptor;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import javax.annotation.Nullable;
 
@@ -279,6 +289,30 @@ public class RCTMGLModule extends ReactContextBaseJavaModule {
                 Mapbox.getInstance(getReactApplicationContext(), "pk.mapir");
             }
         });
+    }
+
+    @ReactMethod
+    public void initOkhttp(final String token){
+        final OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
+
+        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
+        httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        clientBuilder.addInterceptor(httpLoggingInterceptor);
+
+        clientBuilder.interceptors().add(new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                Request request = chain.request();
+                Request newRequest = request.newBuilder()
+                        .addHeader("User-Agent", "Mapir-react-native")
+                        .addHeader("x-api-key", token)
+                        .build();
+                Dispatcher dispatcher = new Dispatcher();
+                dispatcher.setMaxRequestsPerHost(20);
+                return chain.proceed(newRequest);
+            }
+        });
+        HttpRequestUtil.setOkHttpClient(clientBuilder.build());
     }
 
     @ReactMethod
