@@ -32,6 +32,16 @@ dependencies {
         transitive=true
     }
 
+
+
+    // Fix issues
+    implementation 'com.android.support:support-vector-drawable:28.0.0'
+    implementation 'com.android.support:support-annotations:28.0.0'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.12.1'
+
+
+
     // Mapbox plugins
     implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-localization:0.1.0'
     implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer:0.3.0'
