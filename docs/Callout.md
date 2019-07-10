@@ -1,4 +1,4 @@
-## <MapboxGL.Callout />
+## <Mapir.Popup />
 ### Callout that displays information about a selected annotation near the annotation.
 
 ### props
