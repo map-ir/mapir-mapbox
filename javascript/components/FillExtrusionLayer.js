@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { NativeModules, requireNativeComponent } from 'react-native';
+import {NativeModules, requireNativeComponent} from 'react-native';
 
-import { viewPropTypes } from '../utils';
-import { FillExtrusionLayerStyleProp } from '../utils/styleMap';
+import {viewPropTypes} from '../utils';
+import {FillExtrusionLayerStyleProp} from '../utils/styleMap';
+
 import AbstractLayer from './AbstractLayer';
 
 const MapboxGL = NativeModules.MGLModule;
@@ -80,7 +81,7 @@ class FillExtrusionLayer extends AbstractLayer {
       ...this.baseProps,
       sourceLayerID: this.props.sourceLayerID,
     };
-    return <RCTMGLFillExtrusionLayer {...props} />;
+    return <RCTMGLFillExtrusionLayer ref="nativeLayer" {...props} />;
   }
 }
 
@@ -88,7 +89,7 @@ const RCTMGLFillExtrusionLayer = requireNativeComponent(
   NATIVE_MODULE_NAME,
   FillExtrusionLayer,
   {
-    nativeOnly: { reactStyle: true },
+    nativeOnly: {reactStyle: true},
   },
 );
 

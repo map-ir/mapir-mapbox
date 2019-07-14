@@ -6,8 +6,9 @@ import {
   NativeModules,
   requireNativeComponent,
 } from 'react-native';
-import { makePoint, makeLatLngBounds } from '../utils/geoUtils';
+import _ from 'underscore';
 
+import {makePoint, makeLatLngBounds} from '../utils/geoUtils';
 import {
   isFunction,
   isNumber,
@@ -16,10 +17,10 @@ import {
   isAndroid,
   viewPropTypes,
 } from '../utils';
+import {getFilter} from '../utils/filterUtils';
 
-import _ from 'underscore';
-
-import { getFilter } from '../utils/filterUtils';
+import NativeBridgeComponent from './NativeBridgeComponent';
+import Camera from './Camera';
 
 const MapboxGL = NativeModules.MGLModule;
 
@@ -28,25 +29,15 @@ export const NATIVE_MODULE_NAME = 'RCTMGLMapView';
 export const ANDROID_TEXTURE_NATIVE_MODULE_NAME = 'RCTMGLAndroidTextureMapView';
 
 const styles = StyleSheet.create({
-  matchParent: { flex: 1 },
+  matchParent: {flex: 1},
 });
 
 /**
  * MapView backed by Mapbox Native GL
  */
-class MapView extends React.Component {
+class MapView extends NativeBridgeComponent {
   static propTypes = {
     ...viewPropTypes,
-
-    /**
-     * Animates changes between pitch and bearing
-     */
-    animated: PropTypes.bool,
-
-    /**
-     * Initial center coordinate on map [lng, lat]
-     */
-    centerCoordinate: PropTypes.arrayOf(PropTypes.number),
 
     /**
      * Shows the users location on the map
@@ -72,16 +63,6 @@ class MapView extends React.Component {
     ]),
 
     /**
-     * Initial heading on map
-     */
-    heading: PropTypes.number,
-
-    /**
-     * Initial pitch on map
-     */
-    pitch: PropTypes.number,
-
-    /**
      * Style for wrapping React Native View
      */
     style: PropTypes.any,
@@ -90,21 +71,6 @@ class MapView extends React.Component {
      * Style URL for map
      */
     styleURL: PropTypes.string,
-
-    /**
-     * Initial zoom level of map
-     */
-    zoomLevel: PropTypes.number,
-
-    /**
-     * Min zoom level of map
-     */
-    minZoomLevel: PropTypes.number,
-
-    /**
-     * Max zoom level of map
-     */
-    maxZoomLevel: PropTypes.number,
 
     /**
      * Automatically change the language of the map labels to the system’s preferred language,
@@ -186,11 +152,6 @@ class MapView extends React.Component {
     onRegionDidChange: PropTypes.func,
 
     /**
-     * This event is triggered whenever the location engine receives a location update
-     */
-    onUserLocationUpdate: PropTypes.func,
-
-    /**
      * This event is triggered when the map is about to start loading a new map style.
      */
     onWillStartLoadingMap: PropTypes.func,
@@ -241,11 +202,6 @@ class MapView extends React.Component {
     onDidFinishLoadingStyle: PropTypes.func,
 
     /**
-     * This event is triggered when the users tracking mode is changed.
-     */
-    onUserTrackingModeChange: PropTypes.func,
-
-    /**
      * The emitted frequency of regionwillchange events
      */
     regionWillChangeDebounceTime: PropTypes.number,
@@ -257,17 +213,12 @@ class MapView extends React.Component {
   };
 
   static defaultProps = {
-    animated: false,
-    heading: 0,
-    pitch: 0,
     localizeLabels: false,
     scrollEnabled: true,
     pitchEnabled: true,
     rotateEnabled: true,
     attributionEnabled: true,
     logoEnabled: true,
-    zoomLevel: 16,
-    userTrackingMode: MapboxGL.UserTrackingModes.None,
     styleURL: MapboxGL.StyleURL.Street,
     surfaceView: false,
     regionWillChangeDebounceTime: 10,
@@ -279,12 +230,15 @@ class MapView extends React.Component {
 
     this.state = {
       isReady: null,
+      region: null,
+      width: 0,
+      height: 0,
+      isUserInteraction: false,
     };
 
     this._onPress = this._onPress.bind(this);
     this._onLongPress = this._onLongPress.bind(this);
     this._onChange = this._onChange.bind(this);
-    this._onAndroidCallback = this._onAndroidCallback.bind(this);
     this._onLayout = this._onLayout.bind(this);
 
     // debounced map change methods
@@ -299,8 +253,57 @@ class MapView extends React.Component {
       props.regionDidChangeDebounceTime,
     );
 
-    this._callbackMap = new Map();
     this._preRefMapMethodQueue = [];
+  }
+
+  componentDidMount() {
+    this._setHandledMapChangedEvents(this.props);
+  }
+
+  componentWillUnmount() {
+    this._onDebouncedRegionWillChange.cancel();
+    this._onDebouncedRegionDidChange.cancel();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this._setHandledMapChangedEvents(nextProps);
+  }
+
+  _setHandledMapChangedEvents(props) {
+    if (isAndroid()) {
+      const events = [];
+
+      if (props.onRegionWillChange)
+        events.push(MapboxGL.EventTypes.RegionWillChange);
+      if (props.onRegionIsChanging)
+        events.push(MapboxGL.EventTypes.RegionIsChanging);
+      if (props.onRegionDidChange)
+        events.push(MapboxGL.EventTypes.RegionDidChange);
+      if (props.onUserLocationUpdate)
+        events.push(MapboxGL.EventTypes.UserLocationUpdated);
+      if (props.onWillStartLoadingMap)
+        events.push(MapboxGL.EventTypes.WillStartLoadingMap);
+      if (props.onDidFinishLoadingMap)
+        events.push(MapboxGL.EventTypes.DidFinishLoadingMap);
+      if (props.onDidFailLoadingMap)
+        events.push(MapboxGL.EventTypes.DidFailLoadingMap);
+      if (props.onWillStartRenderingFrame)
+        events.push(MapboxGL.EventTypes.WillStartRenderingFrame);
+      if (props.onDidFinishRenderingFrame)
+        events.push(MapboxGL.EventTypes.DidFinishRenderingFrame);
+      if (props.onDidFinishRenderingFrameFully)
+        events.push(MapboxGL.EventTypes.DidFinishRenderingFrameFully);
+      if (props.onWillStartRenderingMap)
+        events.push(MapboxGL.EventTypes.WillStartRenderingMap);
+      if (props.onDidFinishRenderingMap)
+        events.push(MapboxGL.EventTypes.DidFinishRenderingMap);
+      if (props.onDidFinishRenderingMapFully)
+        events.push(MapboxGL.EventTypes.DidFinishRenderingMapFully);
+      if (props.onDidFinishLoadingStyle)
+        events.push(MapboxGL.EventTypes.DidFinishLoadingStyle);
+
+      this._runNativeCommand('setHandledMapChangedEvents', events);
+    }
   }
 
   /**
@@ -405,169 +408,12 @@ class MapView extends React.Component {
   }
 
   /**
-   * Map camera transitions to fit provided bounds
-   *
-   * @example
-   * this.map.fitBounds([lng, lat], [lng, lat])
-   * this.map.fitBounds([lng, lat], [lng, lat], 20, 1000) // padding for all sides
-   * this.map.fitBounds([lng, lat], [lng, lat], [verticalPadding, horizontalPadding], 1000)
-   * this.map.fitBounds([lng, lat], [lng, lat], [top, right, bottom, left], 1000)
-   *
-   * @param {Array<Number>} northEastCoordinates - North east coordinate of bound
-   * @param {Array<Number>} southWestCoordinates - South west coordinate of bound
-   * @param {Number=} padding - Camera padding for bound
-   * @param {Number=} duration - Duration of camera animation
-   * @return {void}
-   */
-  fitBounds(
-    northEastCoordinates,
-    southWestCoordinates,
-    padding = 0,
-    duration = 0.0,
-  ) {
-    if (!this._nativeRef) {
-      return;
-    }
-
-    let pad = {
-      paddingLeft: 0,
-      paddingRight: 0,
-      paddingTop: 0,
-      paddingBottom: 0,
-    };
-
-    if (Array.isArray(padding)) {
-      if (padding.length === 2) {
-        pad.paddingTop = padding[0];
-        pad.paddingBottom = padding[0];
-        pad.paddingLeft = padding[1];
-        pad.paddingRight = padding[1];
-      } else if (padding.length === 4) {
-        pad.paddingTop = padding[0];
-        pad.paddingRight = padding[1];
-        pad.paddingBottom = padding[2];
-        pad.paddingLeft = padding[3];
-      }
-    } else {
-      pad.paddingLeft = padding;
-      pad.paddingRight = padding;
-      pad.paddingTop = padding;
-      pad.paddingBottom = padding;
-    }
-
-    return this.setCamera({
-      bounds: {
-        ne: northEastCoordinates,
-        sw: southWestCoordinates,
-        ...pad,
-      },
-      duration: duration,
-      mode: MapboxGL.CameraModes.None,
-    });
-  }
-
-  /**
-   * Map camera will fly to new coordinate
-   *
-   * @example
-   * this.map.flyTo([lng, lat])
-   * this.map.flyTo([lng, lat], 12000)
-   *
-   *  @param {Array<Number>} coordinates - Coordinates that map camera will jump too
-   *  @param {Number=} duration - Duration of camera animation
-   *  @return {void}
-   */
-  flyTo(coordinates, duration = 2000) {
-    if (!this._nativeRef) {
-      return Promise.reject('No native reference found');
-    }
-    return this.setCamera({
-      centerCoordinate: coordinates,
-      duration: duration,
-      mode: MapboxGL.CameraModes.Flight,
-    });
-  }
-
-  /**
-   * Map camera will move to new coordinate at the same zoom level
-   *
-   * @example
-   * this.map.moveTo([lng, lat], 200) // eases camera to new location based on duration
-   * this.map.moveTo([lng, lat]) // snaps camera to new location without any easing
-   *
-   *  @param {Array<Number>} coordinates - Coordinates that map camera will move too
-   *  @param {Number=} duration - Duration of camera animation
-   *  @return {void}
-   */
-  moveTo(coordinates, duration = 0) {
-    if (!this._nativeRef) {
-      return Promise.reject('No native reference found');
-    }
-    return this.setCamera({
-      centerCoordinate: coordinates,
-      duration: duration,
-    });
-  }
-
-  /**
-   * Map camera will zoom to specified level
-   *
-   * @example
-   * this.map.zoomTo(16)
-   * this.map.zoomTo(16, 100)
-   *
-   * @param {Number} zoomLevel - Zoom level that the map camera will animate too
-   * @param {Number=} duration - Duration of camera animation
-   * @return {void}
-   */
-  zoomTo(zoomLevel, duration = 2000) {
-    if (!this._nativeRef) {
-      return Promise.reject('No native reference found');
-    }
-    return this.setCamera({
-      zoom: zoomLevel,
-      duration: duration,
-      mode: MapboxGL.CameraModes.Flight,
-    });
-  }
-
-  /**
-   * Map camera will perform updates based on provided config. Advanced use only!
-   *
-   * @example
-   * this.map.setCamera({
-   *   centerCoordinate: [lng, lat],
-   *   zoom: 16,
-   *   duration: 2000,
-   * })
-   *
-   * this.map.setCamera({
-   *   stops: [
-   *     { pitch: 45, duration: 200 },
-   *     { heading: 180, duration: 300 },
-   *   ]
-   * })
-   *
-   *  @param {Object} config - Camera configuration
+   * Map camera will perform updates based on provided config. Deprecated use Camera#setCamera.
    */
   setCamera(config = {}) {
-    if (!this._nativeRef) {
-      return;
-    }
-
-    let cameraConfig = {};
-
-    if (config.stops) {
-      cameraConfig.stops = [];
-
-      for (let stop of config.stops) {
-        cameraConfig.stops.push(this._createStopConfig(stop));
-      }
-    } else {
-      cameraConfig = this._createStopConfig(config);
-    }
-
-    return this._runNativeCommand('setCamera', [cameraConfig]);
+    console.warn(
+      'MapView.setCamera is deprecated - please use Camera#setCamera',
+    );
   }
 
   /**
@@ -607,34 +453,42 @@ class MapView extends React.Component {
     return res.center;
   }
 
+  /**
+   * Show the attribution and telemetry action sheet.
+   * If you implement a custom attribution button, you should add this action to the button.
+   */
+  showAttribution() {
+    return this._runNativeCommand('showAttribution');
+  }
+
   _runNativeCommand(methodName, args = []) {
     if (!this._nativeRef) {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         this._preRefMapMethodQueue.push({
-          method: { name: methodName, args: args },
+          method: {name: methodName, args},
           resolver: resolve,
         });
       });
     }
 
     if (isAndroid()) {
-      return new Promise((resolve) => {
-        const callbackID = '' + Date.now();
+      return new Promise(resolve => {
+        const callbackID = `${Date.now()}`;
         this._addAddAndroidCallback(callbackID, resolve);
         args.unshift(callbackID);
         runNativeCommand(NATIVE_MODULE_NAME, methodName, this._nativeRef, args);
       });
     }
-    return runNativeCommand(
+    return super._runNativeCommand(
       NATIVE_MODULE_NAME,
-      methodName,
       this._nativeRef,
+      methodName,
       args,
     );
   }
 
   _createStopConfig(config = {}) {
-    let stopConfig = {
+    const stopConfig = {
       mode: isNumber(config.mode) ? config.mode : MapboxGL.CameraModes.Ease,
       pitch: config.pitch,
       heading: config.heading,
@@ -703,28 +557,42 @@ class MapView extends React.Component {
     if (isFunction(this.props.onRegionWillChange)) {
       this.props.onRegionWillChange(payload);
     }
+    this.setState({isUserInteraction: payload.properties.isUserInteraction});
   }
 
   _onRegionDidChange(payload) {
     if (isFunction(this.props.onRegionDidChange)) {
       this.props.onRegionDidChange(payload);
     }
+    this.setState({region: payload});
   }
 
   _onChange(e) {
-    const { type, payload } = e.nativeEvent;
+    const {
+      regionWillChangeDebounceTime,
+      regionDidChangeDebounceTime,
+    } = this.props;
+    const {type, payload} = e.nativeEvent;
     let propName = '';
 
     switch (type) {
       case MapboxGL.EventTypes.RegionWillChange:
-        this._onDebouncedRegionWillChange(payload);
-        return;
+        if (regionWillChangeDebounceTime > 0) {
+          this._onDebouncedRegionWillChange(payload);
+        } else {
+          propName = 'onRegionWillChange';
+        }
+        break;
       case MapboxGL.EventTypes.RegionIsChanging:
         propName = 'onRegionIsChanging';
         break;
       case MapboxGL.EventTypes.RegionDidChange:
-        this._onDebouncedRegionDidChange(payload);
-        return;
+        if (regionDidChangeDebounceTime > 0) {
+          this._onDebouncedRegionDidChange(payload);
+        } else {
+          propName = 'onRegionDidChange';
+        }
+        break;
       case MapboxGL.EventTypes.UserLocationUpdated:
         propName = 'onUserLocationUpdate';
         break;
@@ -758,6 +626,8 @@ class MapView extends React.Component {
       case MapboxGL.EventTypes.DidFinishLoadingStyle:
         propName = 'onDidFinishLoadingStyle';
         break;
+      default:
+        console.warn('Unhandled event callback type', type);
     }
 
     if (propName.length) {
@@ -765,8 +635,12 @@ class MapView extends React.Component {
     }
   }
 
-  _onLayout() {
-    this.setState({ isReady: true });
+  _onLayout(e) {
+    this.setState({
+      isReady: true,
+      width: e.nativeEvent.layout.width,
+      height: e.nativeEvent.layout.height,
+    });
   }
 
   _handleOnChange(propName, payload) {
@@ -780,6 +654,18 @@ class MapView extends React.Component {
       return;
     }
     return toJSONString(makePoint(this.props.centerCoordinate));
+  }
+
+  _getVisibleCoordinateBounds() {
+    if (!this.props.visibleCoordinateBounds) {
+      return;
+    }
+    return toJSONString(
+      makeLatLngBounds(
+        this.props.visibleCoordinateBounds[0],
+        this.props.visibleCoordinateBounds[1],
+      ),
+    );
   }
 
   _getContentInset() {
@@ -810,16 +696,21 @@ class MapView extends React.Component {
     }
   }
 
+  setNativeProps(props) {
+    if (this._nativeRef) {
+      this._nativeRef.setNativeProps(props);
+    }
+  }
+
   render() {
-    let props = {
+    const props = {
       ...this.props,
-      centerCoordinate: this._getCenterCoordinate(),
       contentInset: this._getContentInset(),
       style: styles.matchParent,
     };
 
     const callbacks = {
-      ref: (nativeRef) => this._setNativeRef(nativeRef),
+      ref: nativeRef => this._setNativeRef(nativeRef),
       onPress: this._onPress,
       onLongPress: this._onLongPress,
       onMapChange: this._onChange,
@@ -851,7 +742,7 @@ class MapView extends React.Component {
 }
 
 const RCTMGLMapView = requireNativeComponent(NATIVE_MODULE_NAME, MapView, {
-  nativeOnly: { onMapChange: true, onAndroidCallback: true },
+  nativeOnly: {onMapChange: true, onAndroidCallback: true},
 });
 
 let RCTMGLAndroidTextureMapView;
@@ -860,7 +751,7 @@ if (isAndroid()) {
     ANDROID_TEXTURE_NATIVE_MODULE_NAME,
     MapView,
     {
-      nativeOnly: { onMapChange: true, onAndroidCallback: true },
+      nativeOnly: {onMapChange: true, onAndroidCallback: true},
     },
   );
 }

@@ -16,8 +16,8 @@
 #import "RCTMGLUtils.h"
 #import "CameraStop.h"
 #import "CameraUpdateQueue.h"
+#import "RCTMGLUserLocation.h"
 #import "FilterParser.h"
-#import "MGLFaux3DUserLocationAnnotationView.h"
 
 @interface RCTMGLMapViewManager() <MGLMapViewDelegate>
 @end
@@ -67,34 +67,21 @@ RCT_EXPORT_MODULE(RCTMGLMapView)
 
 #pragma mark - React View Props
 
-RCT_EXPORT_VIEW_PROPERTY(animated, BOOL)
 RCT_REMAP_VIEW_PROPERTY(localizeLabels, reactLocalizeLabels, BOOL)
 RCT_REMAP_VIEW_PROPERTY(scrollEnabled, reactScrollEnabled, BOOL)
 RCT_REMAP_VIEW_PROPERTY(pitchEnabled, reactPitchEnabled, BOOL)
 RCT_REMAP_VIEW_PROPERTY(rotateEnabled, reactRotateEnabled, BOOL)
 RCT_REMAP_VIEW_PROPERTY(attributionEnabled, reactAttributionEnabled, BOOL)
 RCT_REMAP_VIEW_PROPERTY(logoEnabled, reactLogoEnabled, BOOL)
-RCT_REMAP_VIEW_PROPERTY(showUserLocation, reactShowUserLocation, BOOL)
 RCT_REMAP_VIEW_PROPERTY(compassEnabled, reactCompassEnabled, BOOL)
 RCT_REMAP_VIEW_PROPERTY(zoomEnabled, reactZoomEnabled, BOOL)
 
 RCT_REMAP_VIEW_PROPERTY(contentInset, reactContentInset, NSArray)
-RCT_REMAP_VIEW_PROPERTY(centerCoordinate, reactCenterCoordinate, NSString)
 RCT_REMAP_VIEW_PROPERTY(styleURL, reactStyleURL, NSString)
-
-RCT_REMAP_VIEW_PROPERTY(userTrackingMode, reactUserTrackingMode, int)
-RCT_REMAP_VIEW_PROPERTY(userLocationVerticalAlignment, reactUserLocationVerticalAlignment, int)
-
-RCT_EXPORT_VIEW_PROPERTY(heading, double)
-RCT_EXPORT_VIEW_PROPERTY(pitch, double)
-RCT_REMAP_VIEW_PROPERTY(zoomLevel, reactZoomLevel, double)
-RCT_REMAP_VIEW_PROPERTY(minZoomLevel, reactMinZoomLevel, double)
-RCT_REMAP_VIEW_PROPERTY(maxZoomLevel, reactMaxZoomLevel, double)
 
 RCT_EXPORT_VIEW_PROPERTY(onPress, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onLongPress, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onMapChange, RCTBubblingEventBlock)
-RCT_EXPORT_VIEW_PROPERTY(onUserTrackingModeChange, RCTBubblingEventBlock)
 
 #pragma mark - React Methods
 
@@ -234,9 +221,10 @@ RCT_EXPORT_METHOD(queryRenderedFeaturesAtPoint:(nonnull NSNumber*)reactTag
         }
         
         RCTMGLMapView *reactMapView = (RCTMGLMapView*)view;
+        NSPredicate* predicate = [FilterParser parse:filter];
         NSArray<id<MGLFeature>> *shapes = [reactMapView visibleFeaturesAtPoint:CGPointMake([point[0] floatValue], [point[1] floatValue])
                                                         inStyleLayersWithIdentifiers:layerIDSet
-                                                        predicate:[FilterParser parse:[[FilterList alloc] initWithArray:filter]]];
+                                                        predicate:predicate];
         
         NSMutableArray<NSDictionary*> *features = [[NSMutableArray alloc] init];
         for (int i = 0; i < shapes.count; i++) {
@@ -276,9 +264,10 @@ RCT_EXPORT_METHOD(queryRenderedFeaturesInRect:(nonnull NSNumber*)reactTag
             layerIDSet = [NSSet setWithArray:layerIDs];
         }
         
+        NSPredicate* predicate = [FilterParser parse:filter];
         NSArray<id<MGLFeature>> *shapes = [reactMapView visibleFeaturesInRect:rect
                                                         inStyleLayersWithIdentifiers:layerIDSet
-                                                        predicate:[FilterParser parse:[[FilterList alloc] initWithArray:filter]]];
+                                                        predicate:predicate];
         
         NSMutableArray<NSDictionary*> *features = [[NSMutableArray alloc] init];
         for (int i = 0; i < shapes.count; i++) {
@@ -289,8 +278,7 @@ RCT_EXPORT_METHOD(queryRenderedFeaturesInRect:(nonnull NSNumber*)reactTag
     }];
 }
 
-RCT_EXPORT_METHOD(setCamera:(nonnull NSNumber*)reactTag
-                  withConfiguration:(nonnull NSDictionary*)config
+RCT_EXPORT_METHOD(showAttribution:(nonnull NSNumber *)reactTag
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
 {
@@ -303,22 +291,8 @@ RCT_EXPORT_METHOD(setCamera:(nonnull NSNumber*)reactTag
         }
         
         __weak RCTMGLMapView *reactMapView = (RCTMGLMapView*)view;
-
-        [reactMapView.cameraUpdateQueue flush]; // remove any curreny camera updates
-        
-        if (config[@"stops"]) {
-            NSArray *stops = (NSArray<NSDictionary*>*)config[@"stops"];
-            
-            for (int i = 0; i < stops.count; i++) {
-                [reactMapView.cameraUpdateQueue enqueue:[CameraStop fromDictionary:stops[i]]];
-            }
-        } else {
-            [reactMapView.cameraUpdateQueue enqueue:[CameraStop fromDictionary:config]];
-        }
-
-        [reactMapView.cameraUpdateQueue execute:reactMapView withCompletionHandler:^{
-            resolve(nil);
-        }];
+        [reactMapView showAttribution:reactMapView];
+        resolve(nil);
     }];
 }
 
@@ -389,50 +363,22 @@ RCT_EXPORT_METHOD(setCamera:(nonnull NSNumber*)reactTag
 
 #pragma mark - MGLMapViewDelegate
 
-- (void)mapView:(MGLMapView *)mapView didUpdateUserLocation:(MGLUserLocation *)userLocation
+- (MGLAnnotationView *)mapView:(MGLMapView *)mapView viewForAnnotation:(id<MGLAnnotation>)annotation
 {
-    if (userLocation == nil) {
-        return;
+    if ([annotation isKindOfClass:[MGLUserLocation class]] && mapView.userLocation != nil) {
+        return [[RCTMGLUserLocation sharedInstance] builtinUserAnnotation];
     }
-    
-    RCTMGLMapView *reactMapView = (RCTMGLMapView *)mapView;
-    
-    NSDictionary *coords = @{
-      @"speed": @(userLocation.location.speed),
-      @"heading": @(userLocation.heading.trueHeading),
-      @"accuracy": @(userLocation.location.horizontalAccuracy),
-      @"altitude": @(userLocation.location.altitude),
-      @"latitude": @(userLocation.location.coordinate.latitude),
-      @"longitude": @(userLocation.location.coordinate.longitude)
-     };
-    
-    double utcTimestampMS = [userLocation.location.timestamp timeIntervalSince1970] * 1000.0;
-    NSDictionary *payload = @{ @"timestamp": @(utcTimestampMS), @"coords": coords };
-    RCTMGLEvent *locationEvent = [RCTMGLEvent makeEvent:RCT_MAPBOX_USER_LOCATION_UPDATE withPayload:payload];
-    [self fireEvent:locationEvent withCallback:reactMapView.onMapChange];
+    else if ([annotation isKindOfClass:[RCTMGLPointAnnotation class]]) {
+        RCTMGLPointAnnotation *rctAnnotation = (RCTMGLPointAnnotation *)annotation;
+        return [rctAnnotation getAnnotationView];
+    }
+    return nil;
 }
 
 - (void)mapView:(MGLMapView *)mapView didChangeUserTrackingMode:(MGLUserTrackingMode)mode animated:(BOOL)animated
 {
-    RCTMGLMapView *reactMapView = (RCTMGLMapView *)mapView;
-    if (reactMapView.onUserTrackingModeChange == nil) {
-        return;
-    }
-    
-    NSDictionary *payload = @{ @"userTrackingMode": @(mode) };
-    RCTMGLEvent *event = [RCTMGLEvent makeEvent:RCT_MAPBOX_USER_TRACKING_MODE_CHANGE withPayload:payload];
-    [self fireEvent:event withCallback:reactMapView.onUserTrackingModeChange];
-}
-
-- (MGLAnnotationView *)mapView:(MGLMapView *)mapView viewForAnnotation:(id<MGLAnnotation>)annotation
-{
-    if ([annotation isKindOfClass:[RCTMGLPointAnnotation class]]) {
-        RCTMGLPointAnnotation *rctAnnotation = (RCTMGLPointAnnotation *)annotation;
-        return [rctAnnotation getAnnotationView];
-    } else if ([annotation isKindOfClass:[MGLUserLocation class]]) {
-        return [[MGLFaux3DUserLocationAnnotationView alloc] init];
-    }
-    return nil;
+    RCTMGLMapView* reactMapView = ((RCTMGLMapView *) mapView);
+    [reactMapView didChangeUserTrackingMode:mode animated:animated];
 }
 
 - (void)mapView:(MGLMapView *)mapView didSelectAnnotation:(nonnull id<MGLAnnotation>)annotation
@@ -478,14 +424,14 @@ RCT_EXPORT_METHOD(setCamera:(nonnull NSNumber*)reactTag
 - (void)mapView:(MGLMapView *)mapView regionWillChangeWithReason:(MGLCameraChangeReason)reason animated:(BOOL)animated
 {
     ((RCTMGLMapView *) mapView).isUserInteraction = (BOOL)(reason & ~MGLCameraChangeReasonProgrammatic);
-    
     NSDictionary *payload = [self _makeRegionPayload:mapView animated:animated];
     [self reactMapDidChange:mapView eventType:RCT_MAPBOX_REGION_WILL_CHANGE_EVENT andPayload:payload];
 }
 
 - (void)mapViewRegionIsChanging:(MGLMapView *)mapView
 {
-    [self reactMapDidChange:mapView eventType:RCT_MAPBOX_REGION_IS_CHANGING];
+    NSDictionary *payload = [self _makeRegionPayload:mapView animated:false];
+    [self reactMapDidChange:mapView eventType:RCT_MAPBOX_REGION_IS_CHANGING andPayload:payload];
 }
 
 - (void)mapView:(MGLMapView *)mapView regionDidChangeWithReason:(MGLCameraChangeReason)reason animated:(BOOL)animated
@@ -543,7 +489,7 @@ RCT_EXPORT_METHOD(setCamera:(nonnull NSNumber*)reactTag
 - (void)mapView:(MGLMapView *)mapView didFinishLoadingStyle:(MGLStyle *)style
 {
     RCTMGLMapView *reactMapView = (RCTMGLMapView*)mapView;
-    style.localizesLabels = reactMapView.reactLocalizeLabels;
+    //style.localizesLabels = reactMapView.reactLocalizeLabels;
     
     if (reactMapView.sources.count > 0) {
         for (int i = 0; i < reactMapView.sources.count; i++) {
@@ -557,6 +503,19 @@ RCT_EXPORT_METHOD(setCamera:(nonnull NSNumber*)reactTag
     }
     
     [self reactMapDidChange:reactMapView eventType:RCT_MAPBOX_DID_FINISH_LOADING_STYLE];
+}
+
+-(UIImage *)mapView:(MGLMapView *)mapView didFailToLoadImage:(NSString *)imageName
+{
+    RCTMGLMapView* reactMapView = ((RCTMGLMapView *) mapView);
+    NSArray<RCTMGLShapeSource *> *shapeSources = [reactMapView getAllShapeSources];
+    for (RCTMGLShapeSource *shapeSource in shapeSources) {
+        if([shapeSource addMissingImageToStyle:imageName]) {
+            // The image was added inside addMissingImageToStyle so we can return nil
+            return nil;
+        }
+    }
+    return nil;
 }
 
 - (void)reactMapDidChange:(MGLMapView*)mapView eventType:(NSString*)type

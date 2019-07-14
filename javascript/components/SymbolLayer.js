@@ -1,9 +1,11 @@
 import React from 'react';
+import {View} from 'react-native';
 import PropTypes from 'prop-types';
-import { NativeModules, requireNativeComponent } from 'react-native';
+import {NativeModules, requireNativeComponent} from 'react-native';
 
-import { viewPropTypes } from '../utils';
-import { SymbolLayerStyleProp } from '../utils/styleMap';
+import {viewPropTypes} from '../utils';
+import {SymbolLayerStyleProp} from '../utils/styleMap';
+
 import AbstractLayer from './AbstractLayer';
 
 const MapboxGL = NativeModules.MGLModule;
@@ -75,12 +77,32 @@ class SymbolLayer extends AbstractLayer {
     sourceID: MapboxGL.StyleSource.DefaultSourceID,
   };
 
+  _shouldSnapshot() {
+    let isSnapshot = false;
+
+    if (React.Children.count(this.props.children) <= 0) {
+      return isSnapshot;
+    }
+
+    React.Children.forEach(this.props.children, child => {
+      if (child.type === View) {
+        isSnapshot = true;
+      }
+    });
+
+    return isSnapshot;
+  }
+
   render() {
     const props = {
       ...this.baseProps,
+      snapshot: this._shouldSnapshot(),
       sourceLayerID: this.props.sourceLayerID,
     };
-    return <RCTMGLSymbolLayer {...props} />;
+
+    return (
+      <RCTMGLSymbolLayer {...props}>{this.props.children}</RCTMGLSymbolLayer>
+    );
   }
 }
 
@@ -88,7 +110,7 @@ const RCTMGLSymbolLayer = requireNativeComponent(
   NATIVE_MODULE_NAME,
   SymbolLayer,
   {
-    nativeOnly: { reactStyle: true },
+    nativeOnly: {reactStyle: true, snapshot: true},
   },
 );
 

@@ -2,14 +2,779 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c139f37d-7798-430d-99b7-7381a06beb2c" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/ios/RCTMGL/Media.xcassets/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/RCTMGL/Media.xcassets/mapir.imageset/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/RCTMGL/Media.xcassets/mapir.imageset/mapir.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/rctmgl/.settings/org.eclipse.buildship.core.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/rctmgl/@react-native-mapbox-gl_maps.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/AbstractEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/camera/RCTMGLCamera.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/camera/RCTMGLCameraManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/layers/RCTMGLHeatmapLayer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/layers/RCTMGLHeatmapLayerManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/events/EventEmitter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/events/LocationEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/modules/RCTMGLLocationModule.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/utils/ExpressionParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/utils/ImageEntry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/rctmgl/src/main/res/drawable/empty.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/rctmgl/src/main/res/drawable/empty_drawable.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/rctmgl/src/main/res/drawable/ic_mapir_logo.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/babel.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLAttributedExpression.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLCluster.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLComputedShapeSource.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLHeatmapStyleLayer.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLHillshadeStyleLayer.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLLocationManager.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLLoggingConfiguration.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLNetworkConfiguration.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLRasterDEMSource.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLRasterTileSource.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLSDKMetricsManager.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLShapeOfflineRegion.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLVectorTileSource.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/NSExpression+MGLAdditions.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/NSPredicate+MGLAdditions.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/ar.lproj/Localizable.stringsdict" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/cs.lproj/Foundation.strings" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/cs.lproj/Foundation.stringsdict" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/cs.lproj/Localizable.strings" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/cs.lproj/Localizable.stringsdict" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/da.lproj/Foundation.strings" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/da.lproj/Foundation.stringsdict" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/da.lproj/Localizable.strings" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/da.lproj/Localizable.stringsdict" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/gl.lproj/Foundation.strings" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/gl.lproj/Foundation.stringsdict" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/gl.lproj/Localizable.strings" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/gl.lproj/Localizable.stringsdict" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/he.lproj/Foundation.strings" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/he.lproj/Localizable.strings" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/insert_access_token.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/ko.lproj/Foundation.strings" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/ko.lproj/Foundation.stringsdict" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/ko.lproj/Localizable.strings" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/ko.lproj/Localizable.stringsdict" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/pt-PT.lproj/Foundation.stringsdict" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/pt-PT.lproj/Localizable.strings" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Mapbox.framework/pt-PT.lproj/Localizable.stringsdict" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLCamera.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLCamera.m" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLCameraManager.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLCameraManager.m" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLHeatmapLayer.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLHeatmapLayer.m" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLHeatmapLayerManager.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLHeatmapLayerManager.m" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLLocation.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLLocation.m" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLLocationManager.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLLocationManager.m" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLLocationManagerDelegate.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLLocationModule.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLLocationModule.m" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLUserLocation.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLUserLocation.m" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/javascript/components/AbstractSource.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/javascript/components/Camera.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/javascript/components/HeatmapLayer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/javascript/components/Images.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/javascript/components/NativeBridgeComponent.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/javascript/components/UserLocation.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/javascript/components/annotations/Annotation.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/javascript/modules/location/locationManager.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/javascript/modules/offline/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/javascript/utils/AnimatedPoint.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/templates/index.d.ts.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CONTRIBUTING.md" beforeDir="false" afterPath="$PROJECT_DIR$/CONTRIBUTING.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/4.6/fileChanges/last-build.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/4.6/fileHashes/fileHashes.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/4.6/fileHashes/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/vcsWorkingDirs/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.idea/codeStyles/Project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/android.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/install.md" beforeDir="false" afterPath="$PROJECT_DIR$/android/install.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/local.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/generated/source/buildConfig/debug/com/mapbox/rctmgl/BuildConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/generated/source/r/debug/android/arch/lifecycle/R.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/generated/source/r/debug/android/support/compat/R.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/generated/source/r/debug/android/support/coreui/R.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/generated/source/r/debug/android/support/coreutils/R.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/generated/source/r/debug/android/support/fragment/R.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/generated/source/r/debug/android/support/graphics/drawable/R.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/generated/source/r/debug/android/support/graphics/drawable/animated/R.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/generated/source/r/debug/android/support/v7/appcompat/R.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/generated/source/r/debug/com/mapbox/mapboxsdk/R.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/generated/source/r/debug/com/mapbox/mapboxsdk/plugins/localization/R.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/generated/source/r/debug/com/mapbox/mapboxsdk/plugins/locationlayer/R.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/generated/source/r/debug/com/mapbox/rctmgl/R.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/generated/source/r/debug/com/mapbox/services/android/R.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/generated/source/r/debug/com/mapbox/services/android/telemetry/R.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/generated/source/r/debug/com/mapzen/lost/R.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/generated/source/r/debug/timber/log/R.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/attr/R.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/arch/lifecycle/R.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/compat/R$attr.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/compat/R$bool.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/compat/R$color.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/compat/R$dimen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/compat/R$drawable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/compat/R$id.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/compat/R$integer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/compat/R$layout.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/compat/R$string.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/compat/R$style.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/compat/R$styleable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/compat/R.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/coreui/R$attr.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/coreui/R$bool.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/coreui/R$color.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/coreui/R$dimen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/coreui/R$drawable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/coreui/R$id.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/coreui/R$integer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/coreui/R$layout.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/coreui/R$string.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/coreui/R$style.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/coreui/R$styleable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/coreui/R.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/coreutils/R$attr.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/coreutils/R$bool.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/coreutils/R$color.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/coreutils/R$dimen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/coreutils/R$drawable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/coreutils/R$id.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/coreutils/R$integer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/coreutils/R$layout.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/coreutils/R$string.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/coreutils/R$style.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/coreutils/R$styleable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/coreutils/R.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/fragment/R$attr.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/fragment/R$bool.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/fragment/R$color.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/fragment/R$dimen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/fragment/R$drawable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/fragment/R$id.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/fragment/R$integer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/fragment/R$layout.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/fragment/R$string.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/fragment/R$style.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/fragment/R$styleable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/fragment/R.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/graphics/drawable/R$attr.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/graphics/drawable/R$bool.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/graphics/drawable/R$color.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/graphics/drawable/R$dimen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/graphics/drawable/R$drawable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/graphics/drawable/R$id.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/graphics/drawable/R$integer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/graphics/drawable/R$layout.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/graphics/drawable/R$string.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/graphics/drawable/R$style.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/graphics/drawable/R$styleable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/graphics/drawable/R.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/graphics/drawable/animated/R$attr.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/graphics/drawable/animated/R$bool.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/graphics/drawable/animated/R$color.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/graphics/drawable/animated/R$dimen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/graphics/drawable/animated/R$drawable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/graphics/drawable/animated/R$id.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/graphics/drawable/animated/R$integer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/graphics/drawable/animated/R$layout.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/graphics/drawable/animated/R$string.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/graphics/drawable/animated/R$style.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/graphics/drawable/animated/R$styleable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/graphics/drawable/animated/R.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/v7/appcompat/R$anim.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/v7/appcompat/R$attr.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/v7/appcompat/R$bool.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/v7/appcompat/R$color.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/v7/appcompat/R$dimen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/v7/appcompat/R$drawable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/v7/appcompat/R$id.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/v7/appcompat/R$integer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/v7/appcompat/R$layout.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/v7/appcompat/R$string.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/v7/appcompat/R$style.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/v7/appcompat/R$styleable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/android/support/v7/appcompat/R.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/mapboxsdk/R$attr.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/mapboxsdk/R$color.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/mapboxsdk/R$dimen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/mapboxsdk/R$drawable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/mapboxsdk/R$id.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/mapboxsdk/R$layout.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/mapboxsdk/R$string.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/mapboxsdk/R$styleable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/mapboxsdk/R.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/mapboxsdk/plugins/localization/R$anim.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/mapboxsdk/plugins/localization/R$attr.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/mapboxsdk/plugins/localization/R$bool.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/mapboxsdk/plugins/localization/R$color.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/mapboxsdk/plugins/localization/R$dimen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/mapboxsdk/plugins/localization/R$drawable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/mapboxsdk/plugins/localization/R$id.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/mapboxsdk/plugins/localization/R$integer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/mapboxsdk/plugins/localization/R$layout.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/mapboxsdk/plugins/localization/R$string.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/mapboxsdk/plugins/localization/R$style.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/mapboxsdk/plugins/localization/R$styleable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/mapboxsdk/plugins/localization/R.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/mapboxsdk/plugins/locationlayer/R$anim.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/mapboxsdk/plugins/locationlayer/R$attr.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/mapboxsdk/plugins/locationlayer/R$bool.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/mapboxsdk/plugins/locationlayer/R$color.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/mapboxsdk/plugins/locationlayer/R$dimen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/mapboxsdk/plugins/locationlayer/R$drawable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/mapboxsdk/plugins/locationlayer/R$id.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/mapboxsdk/plugins/locationlayer/R$integer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/mapboxsdk/plugins/locationlayer/R$layout.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/mapboxsdk/plugins/locationlayer/R$string.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/mapboxsdk/plugins/locationlayer/R$style.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/mapboxsdk/plugins/locationlayer/R$styleable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/mapboxsdk/plugins/locationlayer/R.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/BuildConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/R$anim.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/R$attr.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/R$bool.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/R$color.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/R$dimen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/R$drawable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/R$id.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/R$integer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/R$layout.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/R$string.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/R$style.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/R$styleable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/R.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/RCTMGLPackage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/AbstractEventEmitter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/AbstractMapFeature.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/annotation/RCTMGLCallout.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/annotation/RCTMGLCalloutAdapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/annotation/RCTMGLCalloutManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/annotation/RCTMGLPointAnnotation$CustomView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/annotation/RCTMGLPointAnnotation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/annotation/RCTMGLPointAnnotationAdapter$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/annotation/RCTMGLPointAnnotationAdapter$ViewHolder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/annotation/RCTMGLPointAnnotationAdapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/annotation/RCTMGLPointAnnotationManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/annotation/RCTMGLPointAnnotationOptions$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/annotation/RCTMGLPointAnnotationOptions.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/camera/CameraStop.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/camera/CameraUpdateItem$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/camera/CameraUpdateItem$OnCameraCompleteListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/camera/CameraUpdateItem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/camera/CameraUpdateQueue$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/camera/CameraUpdateQueue$OnCompleteAllListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/camera/CameraUpdateQueue.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/camera/constants/CameraMode$Mode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/camera/constants/CameraMode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/mapview/RCTMGLAndroidTextureMapView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/mapview/RCTMGLAndroidTextureMapViewManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/mapview/RCTMGLMapView$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/mapview/RCTMGLMapView$10.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/mapview/RCTMGLMapView$11.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/mapview/RCTMGLMapView$12.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/mapview/RCTMGLMapView$13.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/mapview/RCTMGLMapView$14.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/mapview/RCTMGLMapView$15.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/mapview/RCTMGLMapView$16.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/mapview/RCTMGLMapView$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/mapview/RCTMGLMapView$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/mapview/RCTMGLMapView$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/mapview/RCTMGLMapView$5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/mapview/RCTMGLMapView$6.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/mapview/RCTMGLMapView$7.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/mapview/RCTMGLMapView$8.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/mapview/RCTMGLMapView$9.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/mapview/RCTMGLMapView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/mapview/RCTMGLMapViewManager$MapShadowNode$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/mapview/RCTMGLMapViewManager$MapShadowNode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/mapview/RCTMGLMapViewManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/mapview/helpers/CameraChangeTracker.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$10.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$100.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$101.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$102.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$103.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$104.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$11.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$12.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$13.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$14.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$15.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$16.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$17.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$18.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$19.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$20.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$21.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$22.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$23.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$24.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$25.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$26.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$27.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$28.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$29.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$30.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$31.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$32.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$33.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$34.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$35.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$36.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$37.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$38.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$39.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$40.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$41.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$42.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$43.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$44.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$45.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$46.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$47.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$48.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$49.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$50.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$51.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$52.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$53.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$54.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$55.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$56.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$57.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$58.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$59.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$6.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$60.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$61.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$62.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$63.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$64.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$65.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$66.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$67.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$68.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$69.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$7.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$70.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$71.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$72.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$73.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$74.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$75.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$76.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$77.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$78.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$79.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$8.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$80.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$81.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$82.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$83.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$84.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$85.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$86.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$87.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$88.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$89.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$9.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$90.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$91.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$92.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$93.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$94.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$95.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$96.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$97.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$98.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory$99.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFunctionParser$StopConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleFunctionParser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/RCTMGLStyleValue.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/layers/RCTLayer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/layers/RCTMGLBackgroundLayer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/layers/RCTMGLBackgroundLayerManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/layers/RCTMGLCircleLayer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/layers/RCTMGLCircleLayerManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/layers/RCTMGLFillExtrusionLayer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/layers/RCTMGLFillExtrusionLayerManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/layers/RCTMGLFillLayer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/layers/RCTMGLFillLayerManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/layers/RCTMGLLineLayer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/layers/RCTMGLLineLayerManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/layers/RCTMGLRasterLayer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/layers/RCTMGLRasterLayerManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/layers/RCTMGLSymbolLayer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/layers/RCTMGLSymbolLayerManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/light/RCTMGLLight.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/light/RCTMGLLightManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/sources/RCTMGLImageSource.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/sources/RCTMGLImageSourceManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/sources/RCTMGLRasterSource.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/sources/RCTMGLRasterSourceManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/sources/RCTMGLShapeSource$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/sources/RCTMGLShapeSource.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/sources/RCTMGLShapeSourceManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/sources/RCTMGLVectorSource.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/sources/RCTMGLVectorSourceManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/components/styles/sources/RCTSource.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/events/AbstractEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/events/AndroidCallbackEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/events/FeatureClickEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/events/IEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/events/MapChangeEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/events/MapClickEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/events/MapUserTrackingModeEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/events/OfflineEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/events/PointAnnotationClickEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/events/constants/EventKeys.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/events/constants/EventTypes.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/location/LocationManager$OnUserLocationChange.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/location/LocationManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/location/UserLocation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/location/UserLocationLayerConstants.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/location/UserLocationVerticalAlignment.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/location/UserTrackingMode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/location/UserTrackingState.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/modules/RCTMGLModule$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/modules/RCTMGLModule$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/modules/RCTMGLModule.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/modules/RCTMGLOfflineModule$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/modules/RCTMGLOfflineModule$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/modules/RCTMGLOfflineModule$3$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/modules/RCTMGLOfflineModule$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/modules/RCTMGLOfflineModule$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/modules/RCTMGLOfflineModule$5$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/modules/RCTMGLOfflineModule$5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/modules/RCTMGLOfflineModule$6$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/modules/RCTMGLOfflineModule$6.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/modules/RCTMGLOfflineModule$7.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/modules/RCTMGLOfflineModule$8.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/modules/RCTMGLOfflineModule.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/modules/RCTMGLSnapshotModule$1$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/modules/RCTMGLSnapshotModule$1$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/modules/RCTMGLSnapshotModule$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/modules/RCTMGLSnapshotModule.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/utils/BitmapUtils$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/utils/BitmapUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/utils/ConvertUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/utils/DownloadMapImageTask$OnAllImagesLoaded.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/utils/DownloadMapImageTask.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/utils/FilterParser$FilterList.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/utils/FilterParser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/utils/GeoJSONUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/utils/GeoViewport.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/utils/ResourceUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/utils/SimpleEventCallback.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/rctmgl/utils/SphericalMercator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/services/android/R$anim.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/services/android/R$attr.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/services/android/R$bool.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/services/android/R$color.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/services/android/R$dimen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/services/android/R$drawable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/services/android/R$id.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/services/android/R$integer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/services/android/R$layout.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/services/android/R$string.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/services/android/R$style.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/services/android/R$styleable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/services/android/R.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/services/android/telemetry/R$anim.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/services/android/telemetry/R$attr.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/services/android/telemetry/R$bool.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/services/android/telemetry/R$color.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/services/android/telemetry/R$dimen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/services/android/telemetry/R$drawable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/services/android/telemetry/R$id.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/services/android/telemetry/R$integer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/services/android/telemetry/R$layout.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/services/android/telemetry/R$string.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/services/android/telemetry/R$style.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/services/android/telemetry/R$styleable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapbox/services/android/telemetry/R.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapzen/lost/R$anim.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapzen/lost/R$attr.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapzen/lost/R$bool.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapzen/lost/R$color.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapzen/lost/R$dimen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapzen/lost/R$drawable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapzen/lost/R$id.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapzen/lost/R$integer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapzen/lost/R$layout.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapzen/lost/R$string.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapzen/lost/R$style.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapzen/lost/R$styleable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/com/mapzen/lost/R.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/classes/debug/timber/log/R.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/incremental/compileDebugAidl/dependency.store" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/incremental/debug-mergeJniLibs/merge-state" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/incremental/mergeDebugShaders/merger.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/incremental/packageDebugAssets/merger.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/incremental/packageDebugResources/merged.dir/values/values.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/incremental/packageDebugResources/merger.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/intermediate-jars/debug/classes.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/intermediate-jars/debug/res.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/javaPrecompile/debug/annotationProcessors.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/manifests/aapt/debug/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/manifests/aapt/debug/output.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/manifests/full/debug/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/manifests/full/debug/output.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/packaged_res/debug/layout/annotation.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/packaged_res/debug/values/values.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/res/symbol-table-with-package/debug/package-aware-r.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/symbols/debug/R.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/transforms/mergeJniLibs/debug/__content__.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/intermediates/transforms/stripDebugSymbol/debug/__content__.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/build/outputs/logs/manifest-merger-debug-report.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/mapbox-react-native-mapbox-gl.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/RCTMGLPackage.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/RCTMGLPackage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/AbstractEventEmitter.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/AbstractEventEmitter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/annotation/RCTMGLPointAnnotation.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/annotation/RCTMGLPointAnnotation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/annotation/RCTMGLPointAnnotationAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/annotation/RCTMGLPointAnnotationAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/annotation/RCTMGLPointAnnotationOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/annotation/RCTMGLPointAnnotationOptions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/camera/CameraStop.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/camera/CameraStop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/camera/CameraUpdateItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/camera/CameraUpdateItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/camera/CameraUpdateQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/camera/CameraUpdateQueue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/mapview/RCTMGLMapView.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/mapview/RCTMGLMapView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/mapview/RCTMGLMapViewManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/mapview/RCTMGLMapViewManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/mapview/helpers/CameraChangeTracker.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/mapview/helpers/CameraChangeTracker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/RCTMGLStyle.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/RCTMGLStyle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/RCTMGLStyleFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/RCTMGLStyleFunctionParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/RCTMGLStyleFunctionParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/RCTMGLStyleValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/RCTMGLStyleValue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/layers/RCTLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/layers/RCTLayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/layers/RCTMGLCircleLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/layers/RCTMGLCircleLayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/layers/RCTMGLFillExtrusionLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/layers/RCTMGLFillExtrusionLayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/layers/RCTMGLFillLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/layers/RCTMGLFillLayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/layers/RCTMGLLineLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/layers/RCTMGLLineLayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/layers/RCTMGLRasterLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/layers/RCTMGLRasterLayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/layers/RCTMGLSymbolLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/layers/RCTMGLSymbolLayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/light/RCTMGLLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/light/RCTMGLLight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/sources/RCTMGLImageSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/sources/RCTMGLImageSource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/sources/RCTMGLRasterSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/sources/RCTMGLRasterSource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/sources/RCTMGLShapeSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/sources/RCTMGLShapeSource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/sources/RCTMGLShapeSourceManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/sources/RCTMGLShapeSourceManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/sources/RCTMGLVectorSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/sources/RCTMGLVectorSource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/sources/RCTSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/styles/sources/RCTSource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/events/AbstractEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/events/AbstractEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/events/FeatureClickEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/events/FeatureClickEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/events/MapChangeEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/events/MapChangeEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/events/MapUserTrackingModeEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/events/MapUserTrackingModeEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/events/PointAnnotationClickEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/events/PointAnnotationClickEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/events/constants/EventKeys.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/events/constants/EventKeys.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/location/LocationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/location/LocationManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/location/UserTrackingMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/location/UserTrackingMode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/modules/RCTMGLModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/modules/RCTMGLModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/modules/RCTMGLOfflineModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/modules/RCTMGLOfflineModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/modules/RCTMGLSnapshotModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/modules/RCTMGLSnapshotModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/utils/BitmapUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/utils/BitmapUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/utils/ConvertUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/utils/ConvertUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/utils/DownloadMapImageTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/utils/DownloadMapImageTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/utils/FilterParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/utils/GeoJSONUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/utils/GeoJSONUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/res/drawable-hdpi/mapbox_logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/res/drawable-ldpi/mapbox_logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/res/drawable-mdpi/mapbox_logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/res/drawable-xhdpi/mapbox_logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/res/drawable-xxhdpi/mapbox_logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/rctmgl/src/main/res/drawable-xxxhdpi/mapbox_logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/mapbox_logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/mapbox_logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/.framework_version" beforeDir="false" afterPath="$PROJECT_DIR$/ios/.framework_version" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Assets.car" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Assets.car" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Base.lproj/Foundation.strings" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Base.lproj/Foundation.strings" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Base.lproj/Localizable.strings" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Base.lproj/Localizable.strings" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLAccountManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLAccountManager.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLAnnotation.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLAnnotation.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLAnnotationImage.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLAnnotationImage.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLAnnotationView.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLAnnotationView.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLBackgroundStyleLayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLBackgroundStyleLayer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLCalloutView.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLCalloutView.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLCameraChangeReason.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLCameraChangeReason.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLCircleStyleLayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLCircleStyleLayer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLFeature.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLFeature.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLFillExtrusionStyleLayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLFillExtrusionStyleLayer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLFillStyleLayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLFillStyleLayer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLForegroundStyleLayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLForegroundStyleLayer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLGeometry.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLGeometry.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLImageSource.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLImageSource.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLLight.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLLight.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLLineStyleLayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLLineStyleLayer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLMapCamera.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLMapCamera.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLMapSnapshotter.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLMapSnapshotter.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLMapView+IBAdditions.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLMapView+IBAdditions.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLMapView.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLMapView.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLMapViewDelegate.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLMapViewDelegate.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLOfflinePack.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLOfflinePack.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLOfflineRegion.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLOfflineRegion.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLOfflineStorage.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLOfflineStorage.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLOpenGLStyleLayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLOpenGLStyleLayer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLOverlay.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLOverlay.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLPointAnnotation.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLPointAnnotation.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLPointCollection.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLPointCollection.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLPolygon.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLPolygon.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLPolyline.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLPolyline.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLRasterSource.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLRasterStyleLayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLRasterStyleLayer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLShape.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLShape.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLShapeCollection.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLShapeCollection.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLShapeSource.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLShapeSource.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLSource.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLSource.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLStyle.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLStyle.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLStyleLayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLStyleLayer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLStyleValue.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLStyleValue.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLSymbolStyleLayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLSymbolStyleLayer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLTilePyramidOfflineRegion.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLTilePyramidOfflineRegion.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLTileSource.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLTileSource.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLTypes.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLTypes.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLUserLocation.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLUserLocation.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLUserLocationAnnotationView.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLUserLocationAnnotationView.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLVectorSource.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLVectorStyleLayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/MGLVectorStyleLayer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/Mapbox.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/Mapbox.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/NSValue+MGLAdditions.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Headers/NSValue+MGLAdditions.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Info.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/Mapbox" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/Mapbox" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/api_mapbox_cn-digicert_2018.der" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/api_mapbox_cn-geotrust_2018.der" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/api_mapbox_com-digicert_2016.der" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/api_mapbox_com-digicert_2017.der" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/api_mapbox_com-geotrust_2016.der" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/api_mapbox_com-geotrust_2017.der" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/api_mapbox_staging.der" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/fr.lproj/Localizable.strings" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/fr.lproj/Localizable.strings" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/fr.lproj/Localizable.stringsdict" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/fr.lproj/Localizable.stringsdict" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/ru.lproj/Localizable.strings" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/ru.lproj/Localizable.strings" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/ru.lproj/Localizable.stringsdict" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/ru.lproj/Localizable.stringsdict" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/sv.lproj/Localizable.strings" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/sv.lproj/Localizable.strings" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/sv.lproj/Localizable.stringsdict" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/sv.lproj/Localizable.stringsdict" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/uk.lproj/Localizable.strings" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/uk.lproj/Localizable.strings" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Mapbox.framework/uk.lproj/Localizable.stringsdict" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Mapbox.framework/uk.lproj/Localizable.stringsdict" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/RCTMGL.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/RCTMGL.xcodeproj/project.xcworkspace/xcuserdata/reyhane.xcuserdatad/UserInterfaceState.xcuserstate" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL.xcodeproj/project.xcworkspace/xcuserdata/reyhane.xcuserdatad/UserInterfaceState.xcuserstate" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/RCTMGL.xcodeproj/xcuserdata/reyhane.xcuserdatad/xcschemes/xcschememanagement.plist" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL.xcodeproj/xcuserdata/reyhane.xcuserdatad/xcschemes/xcschememanagement.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL.xcodeproj/project.xcworkspace/contents.xcworkspacedata" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL.xcodeproj/project.xcworkspace/xcuserdata/reyhane.xcuserdatad/UserInterfaceState.xcuserstate" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/CameraStop.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/CameraStop.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/CameraStop.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/CameraStop.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/CameraUpdateItem.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/CameraUpdateItem.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/CameraUpdateQueue.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/CameraUpdateQueue.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/CameraUpdateQueue.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/CameraUpdateQueue.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/FilterList.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/FilterList.m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/FilterParser.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/FilterParser.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/FilterParser.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/FilterParser.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/MGLFaux3DUserLocationAnnotationView.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/MGLFaux3DUserLocationAnnotationView.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/MGLModule.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/MGLModule.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/MGLOfflineModule.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/MGLOfflineModule.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/Media.xcassets/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/Media.xcassets/mapir.imageset/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/Media.xcassets/mapir.imageset/mapir.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLCallout.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLCallout.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLCircleLayer.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLCircleLayer.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLEventTypes.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLEventTypes.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLEventTypes.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLEventTypes.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLFillExtrusionLayer.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLFillExtrusionLayer.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLFillLayer.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLFillLayer.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLImageQueue.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLImageQueue.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLImageQueue.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLImageQueue.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLImageQueueOperation.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLImageQueueOperation.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLImageQueueOperation.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLImageQueueOperation.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLImageSource.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLImageSource.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLLayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLLayer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLLayer.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLLayer.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLLineLayer.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLLineLayer.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLMapView.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLMapView.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLMapView.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLMapView.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLMapViewManager.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLMapViewManager.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLPointAnnotation.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLPointAnnotation.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLRasterSource.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLRasterSource.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLRasterSource.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLRasterSource.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLShapeSource.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLShapeSource.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLShapeSource.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLShapeSource.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLSource.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLSource.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLSource.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLSource.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLStyle.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLStyle.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLStyle.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLStyle.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLStyleValue.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLStyleValue.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLStyleValue.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLStyleValue.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLSymbolLayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLSymbolLayer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLSymbolLayer.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLSymbolLayer.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLSymbolLayerManager.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLSymbolLayerManager.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLUtils.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLUtils.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLUtils.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLUtils.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLVectorSource.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/RCTMGL/RCTMGLVectorSource.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/install.md" beforeDir="false" afterPath="$PROJECT_DIR$/ios/install.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/components/AbstractLayer.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/components/AbstractLayer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/components/BackgroundLayer.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/components/BackgroundLayer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/components/Callout.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/components/Callout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/components/CircleLayer.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/components/CircleLayer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/components/FillExtrusionLayer.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/components/FillExtrusionLayer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/components/FillLayer.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/components/FillLayer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/components/ImageSource.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/components/ImageSource.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/components/Light.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/components/Light.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/components/LineLayer.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/components/LineLayer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/components/MapView.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/components/MapView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/components/PointAnnotation.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/components/PointAnnotation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/components/RasterLayer.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/components/RasterLayer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/components/RasterSource.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/components/RasterSource.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/components/ShapeSource.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/components/ShapeSource.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/components/SymbolLayer.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/components/SymbolLayer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/components/VectorSource.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/components/VectorSource.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/modules/offline/OfflineCreatePackOptions.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/modules/offline/OfflineCreatePackOptions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/modules/offline/OfflinePack.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/modules/offline/OfflinePack.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/modules/offline/offlineManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/modules/offline/offlineManager.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/modules/snapshot/SnapshotOptions.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/modules/snapshot/SnapshotOptions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/modules/snapshot/snapshotManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/modules/snapshot/snapshotManager.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/utils/BridgeValue.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/utils/BridgeValue.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/utils/MapboxStyleSheet.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/utils/filterUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/utils/filterUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/utils/geoUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/utils/geoUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/utils/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/utils/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/utils/styleMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/utils/styleMap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-native-mapbox-gl.podspec" beforeDir="false" afterPath="$PROJECT_DIR$/react-native-mapbox-gl.podspec" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/autogenHelpers/DocJSONBuilder.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/autogenHelpers/DocJSONBuilder.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/autogenHelpers/MarkdownBuilder.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/autogenHelpers/MarkdownBuilder.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/autogenHelpers/globals.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/autogenHelpers/globals.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/autogenerate.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/autogenerate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/templates/RCTMGLStyle.m.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/templates/RCTMGLStyle.m.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/templates/RCTMGLStyleFactory.java.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/templates/RCTMGLStyleFactory.java.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/templates/component.md.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/templates/component.md.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/templates/styleMap.js.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/templates/styleMap.js.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/style-spec/v8.json" beforeDir="false" afterPath="$PROJECT_DIR$/style-spec/v8.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,62 +785,46 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascript/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="1" column="9" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/javascript/utils/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="15" column="15" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="15" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RCTMGLModule.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/modules/RCTMGLModule.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="287" column="26" selection-start-line="283" selection-start-column="4" selection-end-line="315" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RCTMGLMapView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/components/mapview/RCTMGLMapView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="384" column="8" selection-start-line="384" selection-start-column="8" selection-end-line="389" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mapbox_logo.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/android/rctmgl/src/main/res/drawable-hdpi/mapbox_logo.png">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file leaf-file-name="mapbox_logo.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/android/rctmgl/src/main/res/drawable-xxxhdpi/mapbox_logo.png">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
       <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
+            <state relative-caret-position="-2070">
               <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/javascript/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2792">
+              <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="83">
+              <caret line="78" column="7" selection-start-line="78" selection-start-column="7" selection-end-line="78" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor />
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="annotation.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/android/rctmgl/src/main/res/layout/annotation.xml">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -94,8 +843,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/javascript/index.js" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/javascript/utils/index.js" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -127,7 +877,7 @@
             <path>
               <item name="mapir-mapbox" type="b2602c69:ProjectViewProjectNode" />
               <item name="mapir-mapbox" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="ios" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="javascript" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -145,6 +895,11 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -182,12 +937,12 @@
       <workItem from="1562733966660" duration="1481000" />
       <workItem from="1562773387471" duration="372000" />
       <workItem from="1562914385709" duration="1578000" />
-      <workItem from="1563093097521" duration="2224000" />
+      <workItem from="1563093097521" duration="2973000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15408000" />
+    <option name="totallyTimeSpent" value="16157000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="842" extended-state="0" />
@@ -198,7 +953,7 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info id="npm" order="2" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32751676" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.3261745" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3018598" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
@@ -221,30 +976,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/javascript/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="1" column="9" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/javascript/utils/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="15" column="15" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/android/rctmgl/src/main/java/com/mapbox/rctmgl/modules/RCTMGLModule.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8610">
@@ -544,20 +1275,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/javascript/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="1" column="9" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/javascript/utils/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -585,6 +1302,38 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="287" column="26" selection-start-line="283" selection-start-column="4" selection-end-line="315" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/android/rctmgl/src/main/res/layout/annotation.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="83">
+          <caret line="78" column="7" selection-start-line="78" selection-start-column="7" selection-end-line="78" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2070">
+          <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascript/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2792">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>

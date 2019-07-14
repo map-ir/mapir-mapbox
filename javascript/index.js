@@ -1,23 +1,27 @@
-import { Animated, NativeModules, PermissionsAndroid } from 'react-native';
-import { isAndroid } from './utils';
-import * as geoUtils from './utils/geoUtils';
+import {Animated, NativeModules, PermissionsAndroid} from 'react-native';
 
-// components
+import {isAndroid} from './utils';
+import * as geoUtils from './utils/geoUtils';
+// Components
 import MapView from './components/MapView';
-import MapboxStyleSheet from './utils/MapboxStyleSheet';
 import Light from './components/Light';
 import PointAnnotation from './components/PointAnnotation';
+import Annotation from './components/annotations/Annotation';
 import Callout from './components/Callout';
+import UserLocation from './components/UserLocation';
+import Camera from './components/Camera';
 
 // sources
 import VectorSource from './components/VectorSource';
 import ShapeSource from './components/ShapeSource';
 import RasterSource from './components/RasterSource';
 import ImageSource from './components/ImageSource';
+import Images from './components/Images';
 
-// layers
+// Layers
 import FillLayer from './components/FillLayer';
 import FillExtrusionLayer from './components/FillExtrusionLayer';
+import HeatmapLayer from './components/HeatmapLayer';
 import LineLayer from './components/LineLayer';
 import CircleLayer from './components/CircleLayer';
 import SymbolLayer from './components/SymbolLayer';
@@ -25,10 +29,14 @@ import RasterLayer from './components/RasterLayer';
 import BackgroundLayer from './components/BackgroundLayer';
 
 // modules
+import locationManager from './modules/location/locationManager';
 import offlineManager from './modules/offline/offlineManager';
 import snapshotManager from './modules/snapshot/snapshotManager';
 
-let MapboxGL = { ...NativeModules.MGLModule };
+// helpers
+import AnimatedPoint from './utils/AnimatedPoint';
+
+const MapboxGL = {...NativeModules.MGLModule};
 
 // static methods
 MapboxGL.requestAndroidLocationPermissions = async function() {
@@ -43,7 +51,7 @@ MapboxGL.requestAndroidLocationPermissions = async function() {
     }
 
     const permissions = Object.keys(res);
-    for (let permission of permissions) {
+    for (const permission of permissions) {
       if (res[permission] === PermissionsAndroid.RESULTS.GRANTED) {
         return true;
       }
@@ -55,22 +63,30 @@ MapboxGL.requestAndroidLocationPermissions = async function() {
   throw new Error('You should only call this method on Android!');
 };
 
+MapboxGL.UserTrackingModes = Camera.UserTrackingModes;
+
 // components
 MapboxGL.MapView = MapView;
-MapboxGL.StyleSheet = MapboxStyleSheet;
 MapboxGL.Light = Light;
 MapboxGL.PointAnnotation = PointAnnotation;
 MapboxGL.Callout = Callout;
+MapboxGL.UserLocation = UserLocation;
+MapboxGL.Camera = Camera;
+
+// annotations
+MapboxGL.Annotation = Annotation;
 
 // sources
 MapboxGL.VectorSource = VectorSource;
 MapboxGL.ShapeSource = ShapeSource;
 MapboxGL.RasterSource = RasterSource;
 MapboxGL.ImageSource = ImageSource;
+MapboxGL.Images = Images;
 
 // layers
 MapboxGL.FillLayer = FillLayer;
 MapboxGL.FillExtrusionLayer = FillExtrusionLayer;
+MapboxGL.HeatmapLayer = HeatmapLayer;
 MapboxGL.LineLayer = LineLayer;
 MapboxGL.CircleLayer = CircleLayer;
 MapboxGL.SymbolLayer = SymbolLayer;
@@ -78,11 +94,13 @@ MapboxGL.RasterLayer = RasterLayer;
 MapboxGL.BackgroundLayer = BackgroundLayer;
 
 // modules
+MapboxGL.locationManager = locationManager;
 MapboxGL.offlineManager = offlineManager;
 MapboxGL.snapshotManager = snapshotManager;
 
 // utils
 MapboxGL.geoUtils = geoUtils;
+MapboxGL.AnimatedPoint = AnimatedPoint;
 
 // animated
 MapboxGL.Animated = {
@@ -100,7 +118,7 @@ MapboxGL.Animated = {
   BackgroundLayer: Animated.createAnimatedComponent(BackgroundLayer),
 };
 if (isAndroid()) {
-    MapboxGL.initAndroid();
+    MapboxGL.getInstance();
     MapboxGL.apiKey = function (token) {
         MapboxGL.initOkhttp(token);
     }

@@ -70,12 +70,14 @@
 
 - (void)_centerCoordWithZoomCamera:(RCTMGLMapView*)mapView animated:(BOOL)animated withCompletionHandler:(void (^)(void))completionHandler
 {
-    CLLocationDirection direction = _cameraStop.heading != nil ? [_cameraStop.heading doubleValue] : mapView.direction;
-    [mapView setCenterCoordinate:_cameraStop.coordinate
-             zoomLevel:[_cameraStop.zoom doubleValue]
-             direction:direction
-             animated:animated
-             completionHandler:completionHandler];
+    MGLMapCamera *camera = [MGLMapCamera cameraLookingAtCenterCoordinate:_cameraStop.coordinate
+                                    fromDistance:[mapView altitudeFromZoom:[_cameraStop.zoom doubleValue] atLatitude:_cameraStop.coordinate.latitude]
+                                    pitch:[_cameraStop.pitch floatValue]
+                                    heading:[_cameraStop.heading floatValue]];
+    [mapView setCamera:camera
+                withDuration:animated ? _cameraStop.duration : 0
+                animationTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]
+                completionHandler:completionHandler];
 }
 
 - (MGLMapCamera*)_makeCamera:(RCTMGLMapView*)mapView
@@ -90,12 +92,12 @@
         nextCamera.heading = [_cameraStop.heading floatValue];
     }
     
-    if (_cameraStop.zoom != nil) {
-        nextCamera.altitude = [mapView altitudeFromZoom:[_cameraStop.zoom doubleValue]];
-    }
-    
     if ([self _isCoordValid:_cameraStop.coordinate]) {
         nextCamera.centerCoordinate = _cameraStop.coordinate;
+    }
+    
+    if (_cameraStop.zoom != nil) {
+        nextCamera.altitude = [mapView altitudeFromZoom:[_cameraStop.zoom doubleValue] atLatitude:nextCamera.centerCoordinate.latitude atPitch:nextCamera.pitch];
     }
     
     return nextCamera;
