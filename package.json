@@ -1,7 +1,7 @@
 {
   "name": "mapir-mapbox",
   "description": "A mapir Mapbox GL react native module for creating custom maps",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "author": "Reyhane Masumi",
   "main": "./javascript/index.js",
   "keywords": [

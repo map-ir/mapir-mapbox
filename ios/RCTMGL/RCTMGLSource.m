@@ -7,7 +7,7 @@
 //
 
 #import "RCTMGLSource.h"
-#import "UIView+React.h"
+#import <React/UIView+React.h>
 #import "RCTMGLMapView.h"
 
 @implementation RCTMGLSource
