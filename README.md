@@ -1,10 +1,8 @@
-# Mapbox Maps SDK for React Native
+# Mapir SDK for React Native
 
-_An unofficial React Native library for building maps with the [Mapbox Maps SDK for iOS](https://www.mapbox.com/ios-sdk/) and [Mapbox Maps SDK for Android](https://www.mapbox.com/android-sdk/)_
+_A React Native library for building maps with the [Mapbox Maps SDK for iOS](https://www.mapbox.com/ios-sdk/) and [Mapbox Maps SDK for Android](https://www.mapbox.com/android-sdk/)_
 
-[![npm version](https://badge.fury.io/js/%40react-native-mapbox-gl%2Fmaps.svg)](https://badge.fury.io/js/%40react-native-mapbox-gl%2Fmaps)
-![build_status](https://travis-ci.org/react-native-mapbox-gl/maps.svg?branch=master)
-[![Depfu](https://badges.depfu.com/badges/2eac6b62372619718b7f55ebbf8e9d8f/overview.svg)](https://depfu.com/github/react-native-mapbox-gl/maps?project_id=8248)
+[![npm version]2.1.1]
 
 ## Installation
 
