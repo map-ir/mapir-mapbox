@@ -2,7 +2,6 @@ package com.mapbox.rctmgl.modules;
 
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Promise;
@@ -11,12 +10,10 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.common.MapBuilder;
+import com.mapbox.mapboxsdk.maps.TelemetryDefinition;
 import com.mapbox.mapboxsdk.Mapbox;
-import com.mapbox.mapboxsdk.constants.Style;
-import com.mapbox.mapboxsdk.http.HttpRequestUtil;
-import com.mapbox.mapboxsdk.offline.OfflineRegion;
-import com.mapbox.mapboxsdk.plugins.locationlayer.LocationLayerMode;
-import com.mapbox.mapboxsdk.storage.FileSource;
+// import com.mapbox.mapboxsdk.constants.Style;
+import com.mapbox.mapboxsdk.module.http.HttpRequestUtil;
 import com.mapbox.mapboxsdk.style.layers.Property;
 import com.mapbox.rctmgl.components.camera.constants.CameraMode;
 import com.mapbox.rctmgl.components.styles.RCTMGLStyleValue;
@@ -24,20 +21,21 @@ import com.mapbox.rctmgl.components.styles.sources.RCTSource;
 import com.mapbox.rctmgl.events.constants.EventTypes;
 import com.mapbox.rctmgl.location.UserLocationVerticalAlignment;
 import com.mapbox.rctmgl.location.UserTrackingMode;
-import com.mapbox.services.android.telemetry.MapboxTelemetry;
+import com.mapbox.mapboxsdk.maps.Style;
+
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.annotation.Nullable;
+
 import okhttp3.Dispatcher;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
-
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
-import javax.annotation.Nullable;
 
 /**
  * Created by nickitaliano on 8/18/17.
@@ -247,6 +245,10 @@ public class RCTMGLModule extends ReactContextBaseJavaModule {
         offlineModuleCallbackNames.put("Error", RCTMGLOfflineModule.OFFLINE_ERROR);
         offlineModuleCallbackNames.put("Progress", RCTMGLOfflineModule.OFFLINE_PROGRESS);
 
+        // location module callback names
+        Map<String, String> locationModuleCallbackNames = new HashMap<>();
+        locationModuleCallbackNames.put("Update", RCTMGLLocationModule.LOCATION_UPDATE);
+
         return MapBuilder.<String, Object>builder()
                 .put("StyleURL", styleURLS)
                 .put("EventTypes", eventTypes)
@@ -278,17 +280,8 @@ public class RCTMGLModule extends ReactContextBaseJavaModule {
                 .put("LightAnchor", lightAnchor)
                 .put("OfflinePackDownloadState", offlinePackDownloadStates)
                 .put("OfflineCallbackName", offlineModuleCallbackNames)
+                .put("LocationCallbackName", locationModuleCallbackNames)
                 .build();
-    }
-
-    @ReactMethod
-    public void initAndroid() {
-        mReactContext.runOnUiQueueThread(new Runnable() {
-            @Override
-            public void run() {
-                Mapbox.getInstance(getReactApplicationContext(), "pk.mapir");
-            }
-        });
     }
 
     @ReactMethod
@@ -316,6 +309,16 @@ public class RCTMGLModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
+    public void getInstance() {
+        mReactContext.runOnUiQueueThread(new Runnable() {
+            @Override
+            public void run() {
+                Mapbox.getInstance(getReactApplicationContext(), "pk.Mapir");
+            }
+        });
+    }
+
+    @ReactMethod
     public void getAccessToken(Promise promise) {
         WritableMap map = Arguments.createMap();
         map.putString("accessToken", Mapbox.getAccessToken());
@@ -327,11 +330,9 @@ public class RCTMGLModule extends ReactContextBaseJavaModule {
         mReactContext.runOnUiQueueThread(new Runnable() {
             @Override
             public void run() {
+                TelemetryDefinition telemetry = Mapbox.getTelemetry();
+                telemetry.setUserTelemetryRequestState(false);
             }
         });
-    }
-
-    @ReactMethod
-    public void isTelemetryEnabled(Promise promise) {
     }
 }

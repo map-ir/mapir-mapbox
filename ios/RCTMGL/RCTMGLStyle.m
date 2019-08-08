@@ -53,13 +53,15 @@
     } else if ([prop isEqualToString:@"fillTranslateAnchor"]) {
       [self setFillTranslateAnchor:layer withReactStyleValue:styleValue];
     } else if ([prop isEqualToString:@"fillPattern"]) {
-      if (![styleValue.payload[@"shouldAddImage"] boolValue]) {
+      if (![styleValue shouldAddImage]) {
         [self setFillPattern:layer withReactStyleValue:styleValue];
       } else {
-        [RCTMGLUtils fetchImage:_bridge url:styleValue.payload[@"value"] callback:^(NSError *error, UIImage *image) {
+        NSString *imageURI = [styleValue getImageURI];
+
+        [RCTMGLUtils fetchImage:_bridge url:imageURI scale:[styleValue getImageScale] callback:^(NSError *error, UIImage *image) {
           if (image != nil) {
             dispatch_async(dispatch_get_main_queue(), ^{
-              [_style setImage:image forName:styleValue.payload[@"value"]];
+              [_style setImage:image forName:imageURI];
               [self setFillPattern:layer withReactStyleValue:styleValue];
             });
           }
@@ -133,13 +135,15 @@
     } else if ([prop isEqualToString:@"lineDasharrayTransition"]) {
       [self setLineDasharrayTransition:layer withReactStyleValue:styleValue];
     } else if ([prop isEqualToString:@"linePattern"]) {
-      if (![styleValue.payload[@"shouldAddImage"] boolValue]) {
+      if (![styleValue shouldAddImage]) {
         [self setLinePattern:layer withReactStyleValue:styleValue];
       } else {
-        [RCTMGLUtils fetchImage:_bridge url:styleValue.payload[@"value"] callback:^(NSError *error, UIImage *image) {
+        NSString *imageURI = [styleValue getImageURI];
+
+        [RCTMGLUtils fetchImage:_bridge url:imageURI scale:[styleValue getImageScale] callback:^(NSError *error, UIImage *image) {
           if (image != nil) {
             dispatch_async(dispatch_get_main_queue(), ^{
-              [_style setImage:image forName:styleValue.payload[@"value"]];
+              [_style setImage:image forName:imageURI];
               [self setLinePattern:layer withReactStyleValue:styleValue];
             });
           }
@@ -147,6 +151,8 @@
       }
     } else if ([prop isEqualToString:@"linePatternTransition"]) {
       [self setLinePatternTransition:layer withReactStyleValue:styleValue];
+    } else if ([prop isEqualToString:@"lineGradient"]) {
+      [self setLineGradient:layer withReactStyleValue:styleValue];
     } else {
       // TODO throw exception
     }
@@ -174,6 +180,8 @@
       [self setSymbolSpacing:layer withReactStyleValue:styleValue];
     } else if ([prop isEqualToString:@"symbolAvoidEdges"]) {
       [self setSymbolAvoidEdges:layer withReactStyleValue:styleValue];
+    } else if ([prop isEqualToString:@"symbolZOrder"]) {
+      [self setSymbolZOrder:layer withReactStyleValue:styleValue];
     } else if ([prop isEqualToString:@"iconAllowOverlap"]) {
       [self setIconAllowOverlap:layer withReactStyleValue:styleValue];
     } else if ([prop isEqualToString:@"iconIgnorePlacement"]) {
@@ -189,13 +197,15 @@
     } else if ([prop isEqualToString:@"iconTextFitPadding"]) {
       [self setIconTextFitPadding:layer withReactStyleValue:styleValue];
     } else if ([prop isEqualToString:@"iconImage"]) {
-      if (![styleValue.payload[@"shouldAddImage"] boolValue]) {
+      if (![styleValue shouldAddImage]) {
         [self setIconImage:layer withReactStyleValue:styleValue];
       } else {
-        [RCTMGLUtils fetchImage:_bridge url:styleValue.payload[@"value"] callback:^(NSError *error, UIImage *image) {
+        NSString *imageURI = [styleValue getImageURI];
+
+        [RCTMGLUtils fetchImage:_bridge url:imageURI scale:[styleValue getImageScale] callback:^(NSError *error, UIImage *image) {
           if (image != nil) {
             dispatch_async(dispatch_get_main_queue(), ^{
-              [_style setImage:image forName:styleValue.payload[@"value"]];
+              [_style setImage:image forName:imageURI];
               [self setIconImage:layer withReactStyleValue:styleValue];
             });
           }
@@ -372,6 +382,45 @@
   }
 }
 
+- (void)heatmapLayer:(MGLHeatmapStyleLayer *)layer withReactStyle:(NSDictionary *)reactStyle
+{
+  if (![self _hasReactStyle:reactStyle]) {
+    // TODO throw exception
+    return;
+  }
+
+  NSArray<NSString*> *styleProps = [reactStyle allKeys];
+  for (NSString *prop in styleProps) {
+    if ([prop isEqualToString:@"__MAPBOX_STYLESHEET__"]) {
+      continue;
+    }
+
+    RCTMGLStyleValue *styleValue = [RCTMGLStyleValue make:reactStyle[prop]];
+
+    if ([prop isEqualToString:@"visibility"]) {
+      [self setHeatmapStyleLayerVisibility:layer withReactStyleValue:styleValue];
+    } else if ([prop isEqualToString:@"heatmapRadius"]) {
+      [self setHeatmapRadius:layer withReactStyleValue:styleValue];
+    } else if ([prop isEqualToString:@"heatmapRadiusTransition"]) {
+      [self setHeatmapRadiusTransition:layer withReactStyleValue:styleValue];
+    } else if ([prop isEqualToString:@"heatmapWeight"]) {
+      [self setHeatmapWeight:layer withReactStyleValue:styleValue];
+    } else if ([prop isEqualToString:@"heatmapIntensity"]) {
+      [self setHeatmapIntensity:layer withReactStyleValue:styleValue];
+    } else if ([prop isEqualToString:@"heatmapIntensityTransition"]) {
+      [self setHeatmapIntensityTransition:layer withReactStyleValue:styleValue];
+    } else if ([prop isEqualToString:@"heatmapColor"]) {
+      [self setHeatmapColor:layer withReactStyleValue:styleValue];
+    } else if ([prop isEqualToString:@"heatmapOpacity"]) {
+      [self setHeatmapOpacity:layer withReactStyleValue:styleValue];
+    } else if ([prop isEqualToString:@"heatmapOpacityTransition"]) {
+      [self setHeatmapOpacityTransition:layer withReactStyleValue:styleValue];
+    } else {
+      // TODO throw exception
+    }
+  }
+}
+
 - (void)fillExtrusionLayer:(MGLFillExtrusionStyleLayer *)layer withReactStyle:(NSDictionary *)reactStyle
 {
   if (![self _hasReactStyle:reactStyle]) {
@@ -404,13 +453,15 @@
     } else if ([prop isEqualToString:@"fillExtrusionTranslateAnchor"]) {
       [self setFillExtrusionTranslateAnchor:layer withReactStyleValue:styleValue];
     } else if ([prop isEqualToString:@"fillExtrusionPattern"]) {
-      if (![styleValue.payload[@"shouldAddImage"] boolValue]) {
+      if (![styleValue shouldAddImage]) {
         [self setFillExtrusionPattern:layer withReactStyleValue:styleValue];
       } else {
-        [RCTMGLUtils fetchImage:_bridge url:styleValue.payload[@"value"] callback:^(NSError *error, UIImage *image) {
+        NSString *imageURI = [styleValue getImageURI];
+
+        [RCTMGLUtils fetchImage:_bridge url:imageURI scale:[styleValue getImageScale] callback:^(NSError *error, UIImage *image) {
           if (image != nil) {
             dispatch_async(dispatch_get_main_queue(), ^{
-              [_style setImage:image forName:styleValue.payload[@"value"]];
+              [_style setImage:image forName:imageURI];
               [self setFillExtrusionPattern:layer withReactStyleValue:styleValue];
             });
           }
@@ -473,10 +524,53 @@
       [self setRasterContrast:layer withReactStyleValue:styleValue];
     } else if ([prop isEqualToString:@"rasterContrastTransition"]) {
       [self setRasterContrastTransition:layer withReactStyleValue:styleValue];
+    } else if ([prop isEqualToString:@"rasterResampling"]) {
+      [self setRasterResampling:layer withReactStyleValue:styleValue];
     } else if ([prop isEqualToString:@"rasterFadeDuration"]) {
       [self setRasterFadeDuration:layer withReactStyleValue:styleValue];
-    } else if ([prop isEqualToString:@"rasterFadeDurationTransition"]) {
-      [self setRasterFadeDurationTransition:layer withReactStyleValue:styleValue];
+    } else {
+      // TODO throw exception
+    }
+  }
+}
+
+- (void)hillshadeLayer:(MGLHillshadeStyleLayer *)layer withReactStyle:(NSDictionary *)reactStyle
+{
+  if (![self _hasReactStyle:reactStyle]) {
+    // TODO throw exception
+    return;
+  }
+
+  NSArray<NSString*> *styleProps = [reactStyle allKeys];
+  for (NSString *prop in styleProps) {
+    if ([prop isEqualToString:@"__MAPBOX_STYLESHEET__"]) {
+      continue;
+    }
+
+    RCTMGLStyleValue *styleValue = [RCTMGLStyleValue make:reactStyle[prop]];
+
+    if ([prop isEqualToString:@"visibility"]) {
+      [self setHillshadeStyleLayerVisibility:layer withReactStyleValue:styleValue];
+    } else if ([prop isEqualToString:@"hillshadeIlluminationDirection"]) {
+      [self setHillshadeIlluminationDirection:layer withReactStyleValue:styleValue];
+    } else if ([prop isEqualToString:@"hillshadeIlluminationAnchor"]) {
+      [self setHillshadeIlluminationAnchor:layer withReactStyleValue:styleValue];
+    } else if ([prop isEqualToString:@"hillshadeExaggeration"]) {
+      [self setHillshadeExaggeration:layer withReactStyleValue:styleValue];
+    } else if ([prop isEqualToString:@"hillshadeExaggerationTransition"]) {
+      [self setHillshadeExaggerationTransition:layer withReactStyleValue:styleValue];
+    } else if ([prop isEqualToString:@"hillshadeShadowColor"]) {
+      [self setHillshadeShadowColor:layer withReactStyleValue:styleValue];
+    } else if ([prop isEqualToString:@"hillshadeShadowColorTransition"]) {
+      [self setHillshadeShadowColorTransition:layer withReactStyleValue:styleValue];
+    } else if ([prop isEqualToString:@"hillshadeHighlightColor"]) {
+      [self setHillshadeHighlightColor:layer withReactStyleValue:styleValue];
+    } else if ([prop isEqualToString:@"hillshadeHighlightColorTransition"]) {
+      [self setHillshadeHighlightColorTransition:layer withReactStyleValue:styleValue];
+    } else if ([prop isEqualToString:@"hillshadeAccentColor"]) {
+      [self setHillshadeAccentColor:layer withReactStyleValue:styleValue];
+    } else if ([prop isEqualToString:@"hillshadeAccentColorTransition"]) {
+      [self setHillshadeAccentColorTransition:layer withReactStyleValue:styleValue];
     } else {
       // TODO throw exception
     }
@@ -505,13 +599,15 @@
     } else if ([prop isEqualToString:@"backgroundColorTransition"]) {
       [self setBackgroundColorTransition:layer withReactStyleValue:styleValue];
     } else if ([prop isEqualToString:@"backgroundPattern"]) {
-      if (![styleValue.payload[@"shouldAddImage"] boolValue]) {
+      if (![styleValue shouldAddImage]) {
         [self setBackgroundPattern:layer withReactStyleValue:styleValue];
       } else {
-        [RCTMGLUtils fetchImage:_bridge url:styleValue.payload[@"value"] callback:^(NSError *error, UIImage *image) {
+        NSString *imageURI = [styleValue getImageURI];
+
+        [RCTMGLUtils fetchImage:_bridge url:imageURI scale:[styleValue getImageScale] callback:^(NSError *error, UIImage *image) {
           if (image != nil) {
             dispatch_async(dispatch_get_main_queue(), ^{
-              [_style setImage:image forName:styleValue.payload[@"value"]];
+              [_style setImage:image forName:imageURI];
               [self setBackgroundPattern:layer withReactStyleValue:styleValue];
             });
           }
@@ -574,21 +670,11 @@
 
 - (void)setFillAntialias:(MGLFillStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.fillAntialiased = styleValue.mglStyleValue;
 }
 
 - (void)setFillOpacity:(MGLFillStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.fillOpacity = styleValue.mglStyleValue;
 }
 
@@ -599,11 +685,6 @@
 
 - (void)setFillColor:(MGLFillStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.fillColor = styleValue.mglStyleValue;
 }
 
@@ -614,11 +695,6 @@
 
 - (void)setFillOutlineColor:(MGLFillStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.fillOutlineColor = styleValue.mglStyleValue;
 }
 
@@ -629,11 +705,6 @@
 
 - (void)setFillTranslate:(MGLFillStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.fillTranslation = styleValue.mglStyleValue;
 }
 
@@ -644,21 +715,11 @@
 
 - (void)setFillTranslateAnchor:(MGLFillStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.fillTranslationAnchor = styleValue.mglStyleValue;
 }
 
 - (void)setFillPattern:(MGLFillStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.fillPattern = styleValue.mglStyleValue;
 }
 
@@ -671,41 +732,21 @@
 
 - (void)setLineCap:(MGLLineStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.lineCap = styleValue.mglStyleValue;
 }
 
 - (void)setLineJoin:(MGLLineStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.lineJoin = styleValue.mglStyleValue;
 }
 
 - (void)setLineMiterLimit:(MGLLineStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.lineMiterLimit = styleValue.mglStyleValue;
 }
 
 - (void)setLineRoundLimit:(MGLLineStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.lineRoundLimit = styleValue.mglStyleValue;
 }
 
@@ -716,11 +757,6 @@
 
 - (void)setLineOpacity:(MGLLineStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.lineOpacity = styleValue.mglStyleValue;
 }
 
@@ -731,11 +767,6 @@
 
 - (void)setLineColor:(MGLLineStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.lineColor = styleValue.mglStyleValue;
 }
 
@@ -746,11 +777,6 @@
 
 - (void)setLineTranslate:(MGLLineStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.lineTranslation = styleValue.mglStyleValue;
 }
 
@@ -761,21 +787,11 @@
 
 - (void)setLineTranslateAnchor:(MGLLineStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.lineTranslationAnchor = styleValue.mglStyleValue;
 }
 
 - (void)setLineWidth:(MGLLineStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.lineWidth = styleValue.mglStyleValue;
 }
 
@@ -786,11 +802,6 @@
 
 - (void)setLineGapWidth:(MGLLineStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.lineGapWidth = styleValue.mglStyleValue;
 }
 
@@ -801,11 +812,6 @@
 
 - (void)setLineOffset:(MGLLineStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.lineOffset = styleValue.mglStyleValue;
 }
 
@@ -816,11 +822,6 @@
 
 - (void)setLineBlur:(MGLLineStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.lineBlur = styleValue.mglStyleValue;
 }
 
@@ -831,11 +832,6 @@
 
 - (void)setLineDasharray:(MGLLineStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.lineDashPattern = styleValue.mglStyleValue;
 }
 
@@ -846,11 +842,6 @@
 
 - (void)setLinePattern:(MGLLineStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.linePattern = styleValue.mglStyleValue;
 }
 
@@ -859,365 +850,195 @@
     layer.linePatternTransition = [styleValue getTransition];
 }
 
+- (void)setLineGradient:(MGLLineStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
+{
+    layer.lineGradient = styleValue.mglStyleValue;
+}
+
 
 
 - (void)setSymbolPlacement:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.symbolPlacement = styleValue.mglStyleValue;
 }
 
 - (void)setSymbolSpacing:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.symbolSpacing = styleValue.mglStyleValue;
 }
 
 - (void)setSymbolAvoidEdges:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.symbolAvoidsEdges = styleValue.mglStyleValue;
+}
+
+- (void)setSymbolZOrder:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
+{
+    layer.symbolZOrder = styleValue.mglStyleValue;
 }
 
 - (void)setIconAllowOverlap:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.iconAllowsOverlap = styleValue.mglStyleValue;
 }
 
 - (void)setIconIgnorePlacement:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.iconIgnoresPlacement = styleValue.mglStyleValue;
 }
 
 - (void)setIconOptional:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.iconOptional = styleValue.mglStyleValue;
 }
 
 - (void)setIconRotationAlignment:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.iconRotationAlignment = styleValue.mglStyleValue;
 }
 
 - (void)setIconSize:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.iconScale = styleValue.mglStyleValue;
 }
 
 - (void)setIconTextFit:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.iconTextFit = styleValue.mglStyleValue;
 }
 
 - (void)setIconTextFitPadding:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.iconTextFitPadding = styleValue.mglStyleValue;
 }
 
 - (void)setIconImage:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.iconImageName = styleValue.mglStyleValue;
 }
 
 - (void)setIconRotate:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.iconRotation = styleValue.mglStyleValue;
 }
 
 - (void)setIconPadding:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.iconPadding = styleValue.mglStyleValue;
 }
 
 - (void)setIconKeepUpright:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.keepsIconUpright = styleValue.mglStyleValue;
 }
 
 - (void)setIconOffset:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.iconOffset = styleValue.mglStyleValue;
 }
 
 - (void)setIconAnchor:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.iconAnchor = styleValue.mglStyleValue;
 }
 
 - (void)setIconPitchAlignment:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.iconPitchAlignment = styleValue.mglStyleValue;
 }
 
 - (void)setTextPitchAlignment:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.textPitchAlignment = styleValue.mglStyleValue;
 }
 
 - (void)setTextRotationAlignment:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.textRotationAlignment = styleValue.mglStyleValue;
 }
 
 - (void)setTextField:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.text = styleValue.mglStyleValue;
 }
 
 - (void)setTextFont:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.textFontNames = styleValue.mglStyleValue;
 }
 
 - (void)setTextSize:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.textFontSize = styleValue.mglStyleValue;
 }
 
 - (void)setTextMaxWidth:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.maximumTextWidth = styleValue.mglStyleValue;
 }
 
 - (void)setTextLineHeight:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.textLineHeight = styleValue.mglStyleValue;
 }
 
 - (void)setTextLetterSpacing:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.textLetterSpacing = styleValue.mglStyleValue;
 }
 
 - (void)setTextJustify:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.textJustification = styleValue.mglStyleValue;
 }
 
 - (void)setTextAnchor:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.textAnchor = styleValue.mglStyleValue;
 }
 
 - (void)setTextMaxAngle:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.maximumTextAngle = styleValue.mglStyleValue;
 }
 
 - (void)setTextRotate:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.textRotation = styleValue.mglStyleValue;
 }
 
 - (void)setTextPadding:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.textPadding = styleValue.mglStyleValue;
 }
 
 - (void)setTextKeepUpright:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.keepsTextUpright = styleValue.mglStyleValue;
 }
 
 - (void)setTextTransform:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.textTransform = styleValue.mglStyleValue;
 }
 
 - (void)setTextOffset:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.textOffset = styleValue.mglStyleValue;
 }
 
 - (void)setTextAllowOverlap:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.textAllowsOverlap = styleValue.mglStyleValue;
 }
 
 - (void)setTextIgnorePlacement:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.textIgnoresPlacement = styleValue.mglStyleValue;
 }
 
 - (void)setTextOptional:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.textOptional = styleValue.mglStyleValue;
 }
 
@@ -1228,11 +1049,6 @@
 
 - (void)setIconOpacity:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.iconOpacity = styleValue.mglStyleValue;
 }
 
@@ -1243,11 +1059,6 @@
 
 - (void)setIconColor:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.iconColor = styleValue.mglStyleValue;
 }
 
@@ -1258,11 +1069,6 @@
 
 - (void)setIconHaloColor:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.iconHaloColor = styleValue.mglStyleValue;
 }
 
@@ -1273,11 +1079,6 @@
 
 - (void)setIconHaloWidth:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.iconHaloWidth = styleValue.mglStyleValue;
 }
 
@@ -1288,11 +1089,6 @@
 
 - (void)setIconHaloBlur:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.iconHaloBlur = styleValue.mglStyleValue;
 }
 
@@ -1303,11 +1099,6 @@
 
 - (void)setIconTranslate:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.iconTranslation = styleValue.mglStyleValue;
 }
 
@@ -1318,21 +1109,11 @@
 
 - (void)setIconTranslateAnchor:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.iconTranslationAnchor = styleValue.mglStyleValue;
 }
 
 - (void)setTextOpacity:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.textOpacity = styleValue.mglStyleValue;
 }
 
@@ -1343,11 +1124,6 @@
 
 - (void)setTextColor:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.textColor = styleValue.mglStyleValue;
 }
 
@@ -1358,11 +1134,6 @@
 
 - (void)setTextHaloColor:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.textHaloColor = styleValue.mglStyleValue;
 }
 
@@ -1373,11 +1144,6 @@
 
 - (void)setTextHaloWidth:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.textHaloWidth = styleValue.mglStyleValue;
 }
 
@@ -1388,11 +1154,6 @@
 
 - (void)setTextHaloBlur:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.textHaloBlur = styleValue.mglStyleValue;
 }
 
@@ -1403,11 +1164,6 @@
 
 - (void)setTextTranslate:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.textTranslation = styleValue.mglStyleValue;
 }
 
@@ -1418,11 +1174,6 @@
 
 - (void)setTextTranslateAnchor:(MGLSymbolStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.textTranslationAnchor = styleValue.mglStyleValue;
 }
 
@@ -1435,11 +1186,6 @@
 
 - (void)setCircleRadius:(MGLCircleStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.circleRadius = styleValue.mglStyleValue;
 }
 
@@ -1450,11 +1196,6 @@
 
 - (void)setCircleColor:(MGLCircleStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.circleColor = styleValue.mglStyleValue;
 }
 
@@ -1465,11 +1206,6 @@
 
 - (void)setCircleBlur:(MGLCircleStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.circleBlur = styleValue.mglStyleValue;
 }
 
@@ -1480,11 +1216,6 @@
 
 - (void)setCircleOpacity:(MGLCircleStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.circleOpacity = styleValue.mglStyleValue;
 }
 
@@ -1495,11 +1226,6 @@
 
 - (void)setCircleTranslate:(MGLCircleStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.circleTranslation = styleValue.mglStyleValue;
 }
 
@@ -1510,41 +1236,21 @@
 
 - (void)setCircleTranslateAnchor:(MGLCircleStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.circleTranslationAnchor = styleValue.mglStyleValue;
 }
 
 - (void)setCirclePitchScale:(MGLCircleStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.circleScaleAlignment = styleValue.mglStyleValue;
 }
 
 - (void)setCirclePitchAlignment:(MGLCircleStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.circlePitchAlignment = styleValue.mglStyleValue;
 }
 
 - (void)setCircleStrokeWidth:(MGLCircleStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.circleStrokeWidth = styleValue.mglStyleValue;
 }
 
@@ -1555,11 +1261,6 @@
 
 - (void)setCircleStrokeColor:(MGLCircleStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.circleStrokeColor = styleValue.mglStyleValue;
 }
 
@@ -1570,17 +1271,59 @@
 
 - (void)setCircleStrokeOpacity:(MGLCircleStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.circleStrokeOpacity = styleValue.mglStyleValue;
 }
 
 - (void)setCircleStrokeOpacityTransition:(MGLCircleStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
     layer.circleStrokeOpacityTransition = [styleValue getTransition];
+}
+
+
+
+- (void)setHeatmapStyleLayerVisibility:(MGLHeatmapStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
+{
+    layer.visible = [styleValue isVisible];
+}
+
+- (void)setHeatmapRadius:(MGLHeatmapStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
+{
+    layer.heatmapRadius = styleValue.mglStyleValue;
+}
+
+- (void)setHeatmapRadiusTransition:(MGLHeatmapStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
+{
+    layer.heatmapRadiusTransition = [styleValue getTransition];
+}
+
+- (void)setHeatmapWeight:(MGLHeatmapStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
+{
+    layer.heatmapWeight = styleValue.mglStyleValue;
+}
+
+- (void)setHeatmapIntensity:(MGLHeatmapStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
+{
+    layer.heatmapIntensity = styleValue.mglStyleValue;
+}
+
+- (void)setHeatmapIntensityTransition:(MGLHeatmapStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
+{
+    layer.heatmapIntensityTransition = [styleValue getTransition];
+}
+
+- (void)setHeatmapColor:(MGLHeatmapStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
+{
+    layer.heatmapColor = styleValue.mglStyleValue;
+}
+
+- (void)setHeatmapOpacity:(MGLHeatmapStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
+{
+    layer.heatmapOpacity = styleValue.mglStyleValue;
+}
+
+- (void)setHeatmapOpacityTransition:(MGLHeatmapStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
+{
+    layer.heatmapOpacityTransition = [styleValue getTransition];
 }
 
 
@@ -1592,11 +1335,6 @@
 
 - (void)setFillExtrusionOpacity:(MGLFillExtrusionStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.fillExtrusionOpacity = styleValue.mglStyleValue;
 }
 
@@ -1607,11 +1345,6 @@
 
 - (void)setFillExtrusionColor:(MGLFillExtrusionStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.fillExtrusionColor = styleValue.mglStyleValue;
 }
 
@@ -1622,11 +1355,6 @@
 
 - (void)setFillExtrusionTranslate:(MGLFillExtrusionStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.fillExtrusionTranslation = styleValue.mglStyleValue;
 }
 
@@ -1637,21 +1365,11 @@
 
 - (void)setFillExtrusionTranslateAnchor:(MGLFillExtrusionStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.fillExtrusionTranslationAnchor = styleValue.mglStyleValue;
 }
 
 - (void)setFillExtrusionPattern:(MGLFillExtrusionStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.fillExtrusionPattern = styleValue.mglStyleValue;
 }
 
@@ -1662,11 +1380,6 @@
 
 - (void)setFillExtrusionHeight:(MGLFillExtrusionStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.fillExtrusionHeight = styleValue.mglStyleValue;
 }
 
@@ -1677,11 +1390,6 @@
 
 - (void)setFillExtrusionBase:(MGLFillExtrusionStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera", @"source", @"composite"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.fillExtrusionBase = styleValue.mglStyleValue;
 }
 
@@ -1699,11 +1407,6 @@
 
 - (void)setRasterOpacity:(MGLRasterStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.rasterOpacity = styleValue.mglStyleValue;
 }
 
@@ -1714,11 +1417,6 @@
 
 - (void)setRasterHueRotate:(MGLRasterStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.rasterHueRotation = styleValue.mglStyleValue;
 }
 
@@ -1729,11 +1427,6 @@
 
 - (void)setRasterBrightnessMin:(MGLRasterStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.minimumRasterBrightness = styleValue.mglStyleValue;
 }
 
@@ -1744,11 +1437,6 @@
 
 - (void)setRasterBrightnessMax:(MGLRasterStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.maximumRasterBrightness = styleValue.mglStyleValue;
 }
 
@@ -1759,11 +1447,6 @@
 
 - (void)setRasterSaturation:(MGLRasterStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.rasterSaturation = styleValue.mglStyleValue;
 }
 
@@ -1774,11 +1457,6 @@
 
 - (void)setRasterContrast:(MGLRasterStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.rasterContrast = styleValue.mglStyleValue;
 }
 
@@ -1787,19 +1465,71 @@
     layer.rasterContrastTransition = [styleValue getTransition];
 }
 
+- (void)setRasterResampling:(MGLRasterStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
+{
+    layer.rasterResamplingMode = styleValue.mglStyleValue;
+}
+
 - (void)setRasterFadeDuration:(MGLRasterStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.rasterFadeDuration = styleValue.mglStyleValue;
 }
 
-- (void)setRasterFadeDurationTransition:(MGLRasterStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
+
+
+- (void)setHillshadeStyleLayerVisibility:(MGLHillshadeStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    layer.rasterFadeDurationTransition = [styleValue getTransition];
+    layer.visible = [styleValue isVisible];
+}
+
+- (void)setHillshadeIlluminationDirection:(MGLHillshadeStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
+{
+    layer.hillshadeIlluminationDirection = styleValue.mglStyleValue;
+}
+
+- (void)setHillshadeIlluminationAnchor:(MGLHillshadeStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
+{
+    layer.hillshadeIlluminationAnchor = styleValue.mglStyleValue;
+}
+
+- (void)setHillshadeExaggeration:(MGLHillshadeStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
+{
+    layer.hillshadeExaggeration = styleValue.mglStyleValue;
+}
+
+- (void)setHillshadeExaggerationTransition:(MGLHillshadeStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
+{
+    layer.hillshadeExaggerationTransition = [styleValue getTransition];
+}
+
+- (void)setHillshadeShadowColor:(MGLHillshadeStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
+{
+    layer.hillshadeShadowColor = styleValue.mglStyleValue;
+}
+
+- (void)setHillshadeShadowColorTransition:(MGLHillshadeStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
+{
+    layer.hillshadeShadowColorTransition = [styleValue getTransition];
+}
+
+- (void)setHillshadeHighlightColor:(MGLHillshadeStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
+{
+    layer.hillshadeHighlightColor = styleValue.mglStyleValue;
+}
+
+- (void)setHillshadeHighlightColorTransition:(MGLHillshadeStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
+{
+    layer.hillshadeHighlightColorTransition = [styleValue getTransition];
+}
+
+- (void)setHillshadeAccentColor:(MGLHillshadeStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
+{
+    layer.hillshadeAccentColor = styleValue.mglStyleValue;
+}
+
+- (void)setHillshadeAccentColorTransition:(MGLHillshadeStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
+{
+    layer.hillshadeAccentColorTransition = [styleValue getTransition];
 }
 
 
@@ -1811,11 +1541,6 @@
 
 - (void)setBackgroundColor:(MGLBackgroundStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.backgroundColor = styleValue.mglStyleValue;
 }
 
@@ -1826,11 +1551,6 @@
 
 - (void)setBackgroundPattern:(MGLBackgroundStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.backgroundPattern = styleValue.mglStyleValue;
 }
 
@@ -1841,11 +1561,6 @@
 
 - (void)setBackgroundOpacity:(MGLBackgroundStyleLayer *)layer withReactStyleValue:(RCTMGLStyleValue *)styleValue
 {
-    NSArray<NSString*> *allowedFunctionTypes = @[@"camera"];
-    if ([styleValue isFunction] && ![styleValue isFunctionTypeSupported:allowedFunctionTypes]) {
-        // TODO throw execpetion
-        return;
-    }
     layer.backgroundOpacity = styleValue.mglStyleValue;
 }
 

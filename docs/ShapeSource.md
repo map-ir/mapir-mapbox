@@ -1,4 +1,4 @@
-## <MapboxGL.ShapeSource />
+## <Mapir.ShapeSource />
 ### ShapeSource is a map content source that supplies vector shapes to be shown on the map.<br/>The shape may be a url or a GeoJSON object
 
 ### props

@@ -1,4 +1,4 @@
-## <Mapir />
+## ```<Mapir />```
 ### MapView backed by Mapbox Native GL
 
 ### props

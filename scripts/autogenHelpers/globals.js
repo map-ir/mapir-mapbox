@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 let iosPropNameOverrides = {};
 
 const iosSpecOverrides = {
@@ -36,6 +37,7 @@ const iosSpecOverrides = {
   'icon-translate-anchor': 'icon-translation-anchor',
   'text-translate': 'text-translation',
   'text-translate-anchor': 'text-translation-anchor',
+  'raster-resampling': 'raster-resampling-mode',
 };
 
 global.getValue = function(value, defaultValue) {
@@ -95,6 +97,10 @@ global.getLayerType = function(layer, platform) {
       return isIOS ? 'MGLBackgroundStyleLayer' : 'BackgroundLayer';
     case 'raster':
       return isIOS ? 'MGLRasterStyleLayer' : 'RasterLayer';
+    case 'heatmap':
+      return isIOS ? 'MGLHeatmapStyleLayer' : 'HeatmapLayer';
+    case 'hillshade':
+      return isIOS ? 'MGLHillshadeStyleLayer' : 'HillshadeLayer';
     case 'light':
       return isIOS ? 'MGLLight' : 'Light';
     default:
@@ -166,7 +172,7 @@ global.androidOutputType = function(type, value) {
   }
 };
 
-global.androidGetConfigType = function(androidType) {
+global.androidGetConfigType = function(androidType, prop) {
   switch (androidType) {
     case 'Integer':
       return 'styleValue.getInt(VALUE_KEY)';
@@ -179,13 +185,21 @@ global.androidGetConfigType = function(androidType) {
     case 'String[]':
       return 'styleValue.getStringArray(VALUE_KEY)';
     default:
-      return 'styleValue.getString(VALUE_KEY)';
+      if (prop && prop.image) {
+        return 'styleValue.getImageURI()';
+      } else {
+        return 'styleValue.getString(VALUE_KEY)';
+      }
   }
 };
 
 global.jsStyleType = function(prop) {
   if (prop.type === 'color') {
     return 'StyleTypes.Color';
+  }
+
+  if (prop.type === 'enum') {
+    return 'StyleTypes.Enum';
   }
 
   if (prop.type === 'string' && prop.image) {
@@ -214,14 +228,62 @@ global.jsDocPropRequires = function(prop) {
   return desc;
 };
 
+global.dtsInterfaceType = function(prop) {
+  let propTypes = [];
+
+  if (prop.name.indexOf('Translate') !== -1) {
+    propTypes.push('TranslationProps');
+  } else if (prop.type === 'color') {
+    propTypes.push('string');
+    // propTypes.push('ConstantPropType');
+  } else if (prop.type === 'array') {
+    switch (prop.value) {
+      case 'number':
+        propTypes.push('number[]');
+        break;
+      case 'boolean':
+        propTypes.push('boolean[]');
+        break;
+      case 'string':
+        propTypes.push('string[]');
+      default:
+        propTypes.push('any[]');
+    }
+    // propTypes.push('ConstantPropType');
+  } else if (prop.type === 'number') {
+    propTypes.push('number');
+
+  } else if (prop.type === 'enum') {
+    propTypes.push('any');
+  } else {
+    // images can be required which result in a number
+    if (prop.image) {
+      propTypes.push('number');
+    }
+    propTypes.push('string');
+  }
+
+  if (prop.allowedFunctionTypes && prop.allowedFunctionTypes.length) {
+    propTypes.push('StyleFunctionProps');
+  }
+
+  if (propTypes.length > 1) {
+    return `TransitionProps |
+${propTypes.map((p) => startAtSpace(4, p)).join(' | ')},
+${startAtSpace(2, '')}`;
+  } else {
+    return propTypes[0];
+  }
+};
+
+
 global.jsDocReactProp = function(prop) {
   let propTypes = [];
 
   if (prop.name.indexOf('Translate') !== -1) {
-    propTypes.push('TranslationPropType');
+    propTypes.push('PropTypes.arrayOf(PropTypes.number)');
   } else if (prop.type === 'color') {
     propTypes.push('PropTypes.string');
-    propTypes.push('ConstantPropType');
   } else if (prop.type === 'array') {
     switch (prop.value) {
       case 'number':
@@ -235,26 +297,22 @@ global.jsDocReactProp = function(prop) {
       default:
         propTypes.push('PropTypes.array');
     }
-    propTypes.push('ConstantPropType');
   } else if (prop.type === 'number') {
     propTypes.push('PropTypes.number');
-    propTypes.push('ConstantPropType');
+  } else if (prop.type === 'boolean') {
+    propTypes.push('PropTypes.bool');
   } else if (prop.type === 'enum') {
     propTypes.push('PropTypes.any');
   } else {
     // images can be required which result in a number
-    if (
-      prop.name.indexOf('Image') !== -1 ||
-      prop.name.indexOf('Pattern') !== -1
-    ) {
+    if (prop.image) {
       propTypes.push('PropTypes.number');
     }
     propTypes.push('PropTypes.string');
-    propTypes.push('ConstantPropType');
   }
 
-  if (prop.allowedFunctionTypes && prop.allowedFunctionTypes.length) {
-    propTypes.push('StyleFunctionPropType');
+  if (prop.expressionSupported && !propTypes.includes('PropTypes.array')) {
+    propTypes.push('PropTypes.array');
   }
 
   if (propTypes.length > 1) {
@@ -277,6 +335,9 @@ global.startAtSpace = function(spaceCount, str) {
 };
 
 global.replaceNewLine = function(str) {
+  if (str === undefined) {
+    return undefined;
+  }
   return str.replace(/\n/g, '<br/>');
 };
 
@@ -290,22 +351,33 @@ global.styleMarkdownTableRow = function(style) {
 global.methodMarkdownTableRow = function(method) {
   return method.params
     .map((param) => {
-      return `| \`${param.name}\` | \`${param.type.name}\` | \`${
+      return `| \`${param.name}\` | \`${(param.type && param.type.name) || 'n/a'}\` | \`${
         param.optional ? 'No' : 'Yes'
       }\` | ${replaceNewLine(param.description)} |`;
     })
     .join('\n');
 };
 
-global.propMarkdownTableRows = function(component) {
-  return component.props
+function _propMarkdownTableRows(props, prefix = "") {
+  return props
     .map((prop) => {
-      return `| ${prop.name} | \`${prop.type}\` | \`${prop.default}\` | \`${
+      let type = prop.type;
+      if (typeof(type) === "object") {
+        type = type.name;
+      }
+      let result =  `| ${prefix}${prop.name} | \`${type}\` | \`${prop.default}\` | \`${
         prop.required
       }\` | ${replaceNewLine(prop.description)} |`;
+      if (type == "shape") {
+        result = `${result}\n${_propMarkdownTableRows(prop.type.value, `&nbsp;&nbsp;${prefix}`)}`
+      }
+      return result;
     })
     .join('\n');
 };
+global.propMarkdownTableRows = function (component) {
+  return _propMarkdownTableRows(component.props, "");
+}
 
 global.getMarkdownMethodSignature = function(method) {
   const params = method.params
@@ -327,6 +399,9 @@ global.getMarkdownMethodSignature = function(method) {
 };
 
 global.getMarkdownMethodExamples = function(method) {
+  if (method.examples == null) {
+    return null;
+  }
   return method.examples
     .map((example) => {
       return `

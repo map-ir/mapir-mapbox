@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const styleSpecJSON = require('../style-spec/v8.json');
 const ejs = require('ejs');
+const prettier = require('prettier')
 
 const DocJSONBuilder = require('./autogenHelpers/DocJSONBuilder');
 const MarkdownBuilder = require('./autogenHelpers/MarkdownBuilder');
@@ -16,27 +17,25 @@ if (!styleSpecJSON) {
 }
 
 const layers = [];
-const androidVersion = '5.2.0';
-const iosVersion = '3.7.0';
+const androidVersion = '8.0.0';
+const iosVersion = '5.0.0';
 
 const TMPL_PATH = path.join(__dirname, 'templates');
-const IOS_OUTPUT_PATH = path.join(
-  __dirname,
+
+const outputToExample = true;
+const OUTPUT_EXAMPLE_PREFIX = [
   '..',
   'example',
   'node_modules',
-  '@mapbox',
-  'react-native-mapbox-gl',
-  'ios',
-  'RCTMGL',
-);
+  '@react-native-mapbox-gl',
+  'maps',
+];
+const OUTPUT_PREFIX = outputToExample ? OUTPUT_EXAMPLE_PREFIX : ['..'];
+
+const IOS_OUTPUT_PATH = path.join(__dirname, ...OUTPUT_PREFIX, 'ios', 'RCTMGL');
 const ANDROID_OUTPUT_PATH = path.join(
   __dirname,
-  '..',
-  'example',
-  'node_modules',
-  '@mapbox',
-  'react-native-mapbox-gl',
+  ...OUTPUT_PREFIX,
   'android',
   'rctmgl',
   'src',
@@ -50,11 +49,7 @@ const ANDROID_OUTPUT_PATH = path.join(
 );
 const JS_OUTPUT_PATH = path.join(
   __dirname,
-  '..',
-  'example',
-  'node_modules',
-  '@mapbox',
-  'react-native-mapbox-gl',
+  ...OUTPUT_PREFIX,
   'javascript',
   'utils',
 );
@@ -163,6 +158,8 @@ function buildProperties(attributes, attrName) {
     image: isImage(attrName),
     translate: isTranslate(attrName),
     transition: attributes[attrName].transition,
+    expression: attributes[attrName].expression,
+    expressionSupported: Object.keys(attributes[attrName].expression || {}).length > 0,
     support: getAttributeSupport(attributes[attrName]['sdk-support']),
     allowedFunctionTypes: getAllowedFunctionTypes(attributes[attrName]),
   };
@@ -237,15 +234,15 @@ function getAttributeSupport(sdkSupport) {
     data: { android: false, ios: false },
   };
 
-  const basicSupport = sdkSupport['basic functionality'];
-  if (basicSupport.android) {
+  const basicSupport = sdkSupport && sdkSupport['basic functionality'];
+  if (basicSupport && basicSupport.android) {
     support.basic.android = isVersionGTE(androidVersion, basicSupport.android);
   }
-  if (basicSupport.ios) {
+  if (basicSupport && basicSupport.ios) {
     support.basic.ios = isVersionGTE(iosVersion, basicSupport.ios);
   }
 
-  const dataDrivenSupport = sdkSupport['data-driven styling'];
+  const dataDrivenSupport = sdkSupport && sdkSupport['data-driven styling'];
   if (dataDrivenSupport && dataDrivenSupport.android) {
     support.data.android = isVersionGTE(
       androidVersion,
@@ -292,6 +289,10 @@ function getAllowedFunctionTypes(paintAttr) {
     output: path.join(IOS_OUTPUT_PATH, 'RCTMGLStyle.h'),
   },
   {
+    input: path.join(TMPL_PATH, 'index.d.ts.ejs'),
+    output: path.join(IOS_OUTPUT_PATH, 'index.d.ts'),
+  },
+  {
     input: path.join(TMPL_PATH, 'RCTMGLStyle.m.ejs'),
     output: path.join(IOS_OUTPUT_PATH, 'RCTMGLStyle.m'),
   },
@@ -303,10 +304,15 @@ function getAllowedFunctionTypes(paintAttr) {
     input: path.join(TMPL_PATH, 'styleMap.js.ejs'),
     output: path.join(JS_OUTPUT_PATH, 'styleMap.js'),
   },
-].forEach(({ input, output }) => {
-  console.log(`Generating ${output.split('/').pop()}`);
-  const tmpl = ejs.compile(fs.readFileSync(input, 'utf8'), { strict: true });
-  fs.writeFileSync(output, tmpl({ layers: layers }));
+].forEach(({input, output}) => {
+  const filename = output.split('/').pop();
+  console.log(`Generating ${filename}`);
+  const tmpl = ejs.compile(fs.readFileSync(input, 'utf8'), {strict: true});
+  let results = tmpl({layers});
+  if (filename.endsWith('ts')) {
+    results = prettier.format(results, {filepath: filename});
+  }
+  fs.writeFileSync(output, results);
 });
 
 // autogenerate docs

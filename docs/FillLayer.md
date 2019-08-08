@@ -1,4 +1,4 @@
-## <MapboxGL.FillLayer />
+## <Mapir.FillLayer />
 ### FillLayer is a style layer that renders one or more filled (and optionally stroked) polygons on the map.
 
 ### props

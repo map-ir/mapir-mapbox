@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/src/main/assets"/><source path="/Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/build/generated/assets/shaders/debug"/></dataSet><dataSet config="debug"><source path="/Users/reyhane/Documents/mapbox/lastTest/node_modules/@mapbox/react-native-mapbox-gl/android/rctmgl/src/debug/assets"/></dataSet></merger>

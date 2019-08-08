@@ -1,22 +1,10 @@
-<a href="https://www.mapbox.com">
-  <img src="/assets/mapbox_logo.png" width="500"/>
-</a>
-
 # Mapbox Maps SDK for React Native
 
-_An official React Native component for building maps with the [Mapbox Maps SDK for iOS](https://www.mapbox.com/ios-sdk/) and [Mapbox Maps SDK for Android](https://www.mapbox.com/android-sdk/)_
+_An unofficial React Native library for building maps with the [Mapbox Maps SDK for iOS](https://www.mapbox.com/ios-sdk/) and [Mapbox Maps SDK for Android](https://www.mapbox.com/android-sdk/)_
 
-[![npm version](https://badge.fury.io/js/%40mapbox%2Freact-native-mapbox-gl.svg)](https://badge.fury.io/js/%40mapbox%2Freact-native-mapbox-gl)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fmapbox%2Freact-native-mapbox-gl.svg?type=shield)](https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fmapbox%2Freact-native-mapbox-gl?ref=badge_shield)
-
-## What is Mapbox?
-
-Mapbox is the location data platform for mobile and web applications. We provide [building blocks](https://www.mapbox.com/products/) to add location features like maps, search, and navigation into any experience you create. Use our simple and powerful APIs & SDKs and our open source libraries for interactivity and control.
-
-## Sign up for Mapbox
-
-Not a Mapbox user yet? [Sign up for an account here](https://www.mapbox.com/signup/). Once you’re signed in, all you need to start building is a Mapbox access token. Use this same short code with all of our interactive mapping libraries, Python and JavaScript SDKs, and directly against our REST APIs. You can create and manage your access tokens on your [Mapbox Account page](https://www.mapbox.com/account/).
-
+[![npm version](https://badge.fury.io/js/%40react-native-mapbox-gl%2Fmaps.svg)](https://badge.fury.io/js/%40react-native-mapbox-gl%2Fmaps)
+![build_status](https://travis-ci.org/react-native-mapbox-gl/maps.svg?branch=master)
+[![Depfu](https://badges.depfu.com/badges/2eac6b62372619718b7f55ebbf8e9d8f/overview.svg)](https://depfu.com/github/react-native-mapbox-gl/maps?project_id=8248)
 
 ## Installation
 
@@ -24,17 +12,22 @@ Not a Mapbox user yet? [Sign up for an account here](https://www.mapbox.com/sign
 
 * [node](https://nodejs.org)
 * [npm](https://www.npmjs.com/)
-* [React Native](https://facebook.github.io/react-native/) recommended version 0.50 or greater
+* [React Native](https://facebook.github.io/react-native/) (0.59+)
 
 **Git**
 ```
-git clone git@github.com:map-ir/mapir-mapbox.git
-cd mapir-mapbox
+git clone git@github.com:react-native-mapbox-gl/maps.git
+cd maps
+```
+
+**Yarn**
+```
+yarn add @react-native-mapbox-gl/maps
 ```
 
 **Npm**
 ```
-npm install mapir-mapbox
+npm install @react-native-mapbox-gl/maps --save
 ```
 
 ## Installation Guides
@@ -43,32 +36,27 @@ npm install mapir-mapbox
 * [iOS](/ios/install.md)
 * [Example](/example)
 
+## [Getting Started](/docs/GettingStarted.md)
+
 ## Documentation
 
 ### Components
 * [MapView](/docs/MapView.md)
-* [Light](/docs/Light.md)
-* [StyleSheet](/docs/StyleSheet.md)
-* [PointAnnotation](/docs/PointAnnotation.md)
-* [Callout](/docs/Callout.md)
+* [Marker](/docs/PointAnnotation.md)
+* [Popup](/docs/Callout.md)
+* [Camera](docs/Camera.md)
+* [UserLocation](docs/UserLocation.md)
+* [Images](docs/Images.md)
 
 ### Sources
-* [VectorSource](/docs/VectorSource.md)
 * [ShapeSource](/docs/ShapeSource.md)
 * [RasterSource](/docs/RasterSource.md)
 
 ### Layers
-* [BackgroundLayer](/docs/BackgroundLayer.md)
-* [CircleLayer](/docs/CircleLayer.md)
-* [FillExtrusionLayer](/docs/FillExtrusionLayer.md)
 * [FillLayer](/docs/FillLayer.md)
 * [LineLayer](/docs/LineLayer.md)
 * [RasterLayer](/docs/RasterLayer.md)
 * [SymbolLayer](/docs/SymbolLayer.md)
-
-### Offline
-* [OfflineManager](/docs/OfflineManager.md)
-* [SnapshotManager](/docs/snapshotManager.md)
 
 ## Expo Support
 We have a feature request open with Expo if you want to see it get in show your support https://expo.canny.io/feature-requests/p/add-mapbox-gl-support
