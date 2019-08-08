@@ -2,8 +2,6 @@
 
 _A React Native library for building maps with the [Mapbox Maps SDK for iOS](https://www.mapbox.com/ios-sdk/) and [Mapbox Maps SDK for Android](https://www.mapbox.com/android-sdk/)_
 
-[![npm version]2.1.1]
-
 ## Installation
 
 **Dependencies**
