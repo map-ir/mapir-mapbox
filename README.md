@@ -1,5 +1,6 @@
 # Mapir SDK for React Native
 
+[![npm version](https://badge.fury.io/js/mapir-mapbox.svg)](https://badge.fury.io/js/mapir-mapbox.svg)
 _A React Native library for building maps with the [Mapbox Maps SDK for iOS](https://www.mapbox.com/ios-sdk/) and [Mapbox Maps SDK for Android](https://www.mapbox.com/android-sdk/)_
 
 ## Installation
