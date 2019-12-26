@@ -68,7 +68,7 @@ Include project, so gradle knows where to find the project
 rootProject.name = <YOUR_PROJECT_NAME>
 
 +include ':@react-native-mapbox-gl_maps'
-+project(':@react-native-mapbox-gl_maps').projectDir = new File(rootProject.projectDir, '../node_modules/@react-native-mapbox-gl/maps/android/rctmgl')
++project(':@react-native-mapbox-gl_maps').projectDir = new File(rootProject.projectDir, '../node_modules/mapir-mapbox/android/rctmgl')
 
 include ':app'¬
 ```
