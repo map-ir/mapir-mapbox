@@ -99,5 +99,10 @@ MapboxGL.Animated = {
   RasterLayer: Animated.createAnimatedComponent(RasterLayer),
   BackgroundLayer: Animated.createAnimatedComponent(BackgroundLayer),
 };
+if (isAndroid()) {
+  MapboxGL.apiKey = function (token) {
+    MapboxGL.initOkhttp(token);
+  }
+}
 
 export default MapboxGL;
