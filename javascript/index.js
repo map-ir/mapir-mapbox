@@ -118,10 +118,10 @@ MapboxGL.Animated = {
   BackgroundLayer: Animated.createAnimatedComponent(BackgroundLayer),
 };
 if (isAndroid()) {
+    MapboxGL.getInstance();
     MapboxGL.apiKey = function (token) {
         MapboxGL.initOkhttp(token);
-    };
-  MapboxGL.getInstance();
+    }
 }
 
 export default MapboxGL;
