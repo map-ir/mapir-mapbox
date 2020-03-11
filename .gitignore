@@ -74,6 +74,7 @@ typings/
 # Serverless directories
 .serverless
 
-.gitignore
 android/rctmgl/build
 ios/ios
+ios/Mapbox.framework
+.idea/

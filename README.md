@@ -54,6 +54,7 @@ npm install @react-native-mapbox-gl/maps --save
 * [LineLayer](/docs/LineLayer.md)
 * [RasterLayer](/docs/RasterLayer.md)
 * [SymbolLayer](/docs/SymbolLayer.md)
+* [HeatmapLayer](/docs/HeatmapLayer.md)
 
 ## Expo Support
 We have a feature request open with Expo if you want to see it get in show your support https://expo.canny.io/feature-requests/p/add-mapbox-gl-support
