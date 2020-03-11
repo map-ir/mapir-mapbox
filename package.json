@@ -1,9 +1,24 @@
 {
+<<<<<<< HEAD
   "_args": [
     [
       "mapir-mapbox@2.0.5",
       "/Users/reyhane/Documents/Shiveh/Mapir-react-native-example"
     ]
+=======
+  "name": "mapir-mapbox",
+  "description": "A mapir Mapbox GL react native module for creating custom maps",
+  "version": "2.0.5",
+  "author": "Reyhane Masumi",
+  "main": "./javascript/index.js",
+  "keywords": [
+    "gl",
+    "ios",
+    "android",
+    "mapbox",
+    "react-component",
+    "react-native"
+>>>>>>> f15c2ce7adaaea6d5cfa277b251929a5d94c0f72
   ],
   "_from": "mapir-mapbox@2.0.5",
   "_id": "mapir-mapbox@2.0.5",
@@ -21,6 +36,7 @@
     "saveSpec": null,
     "fetchSpec": "2.0.5"
   },
+<<<<<<< HEAD
   "_requiredBy": [
     "/mapir-react-native-sdk"
   ],
@@ -29,6 +45,19 @@
   "_where": "/Users/reyhane/Documents/Shiveh/Mapir-react-native-example",
   "author": {
     "name": "Reyhane Masumi"
+=======
+  "scripts": {
+    "fetch:ios:sdk": "node ./scripts/download-mapbox-gl-native-ios-if-on-mac.js 2.2.0",
+    "fetch:style:spec": ". ./scripts/download-style-spec.sh",
+    "generate": "node ./scripts/autogenerate",
+    "preinstall": "npm run fetch:ios:sdk",
+    "test": "npm run lint && npm run unittest",
+    "unittest": "jest --coverage --verbose",
+    "unittest:single": "jest --testNamePattern",
+    "format": "npm run lint -- --fix",
+    "lint": "./node_modules/eslint/bin/eslint.js ./javascript/** ./example/src/** ./__tests__/**",
+    "precommit": "lint-staged"
+>>>>>>> f15c2ce7adaaea6d5cfa277b251929a5d94c0f72
   },
   "bugs": {
     "url": "https://github.com/mapbox/react-native-mapbox-gl/issues"
