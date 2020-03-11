@@ -9,11 +9,18 @@
 #import "RCTMGLCircleLayer.h"
 #import "RCTMGLStyle.h"
 
+#import <React/RCTLog.h>
+
 @implementation RCTMGLCircleLayer
 
 - (void)updateFilter:(NSPredicate *)predicate
 {
-    ((MGLCircleStyleLayer *) self.styleLayer).predicate = predicate;
+    @try {
+        ((MGLCircleStyleLayer *) self.styleLayer).predicate = predicate;
+    }
+    @catch (NSException* exception) {
+        RCTLogError(@"Invalid predicate: %@ on layer %@ - %@ reason: %@", predicate, self, exception.name, exception.reason);
+    }
 }
 
 - (void)setSourceLayerID:(NSString *)sourceLayerID
@@ -25,10 +32,8 @@
     }
 }
 
-- (void)addToMap:(MGLStyle *)style
+- (void)addedToMap
 {
-    [super addToMap:style];
-    
     NSPredicate *filter = [self buildFilters];
     if (filter != nil) {
         [self updateFilter:filter];

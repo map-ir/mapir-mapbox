@@ -1,9 +1,13 @@
 /* eslint react/prop-types:0  */
 import React from 'react';
-import MapboxStyleSheet from '../utils/MapboxStyleSheet';
-import { getFilter } from '../utils/filterUtils';
+import {processColor} from 'react-native';
+import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource';
 
-class AbstractLayer extends React.Component {
+import {getFilter} from '../utils/filterUtils';
+import {getStyleType} from '../utils/styleMap';
+import BridgeValue from '../utils/BridgeValue';
+
+class AbstractLayer extends React.PureComponent {
   get baseProps() {
     return {
       ...this.props,
@@ -20,31 +24,43 @@ class AbstractLayer extends React.Component {
     };
   }
 
+  getStyleTypeFormatter(styleType) {
+    if (styleType === 'color') {
+      return processColor;
+    }
+  }
+
   getStyle() {
     if (!this.props.style) {
       return;
     }
 
-    if (!Array.isArray(this.props.style)) {
-      return this._getMapboxStyleSheet(this.props.style);
-    }
+    const nativeStyle = {};
+    const styleProps = Object.keys(this.props.style);
+    for (const styleProp of styleProps) {
+      const styleType = getStyleType(styleProp);
+      let rawStyle = this.props.style[styleProp];
 
-    const styles = this.props.style;
-    let flattenStyle = {};
-
-    for (let style of styles) {
-      if (!style) {
-        continue;
+      if (styleType === 'color' && typeof rawStyle === 'string') {
+        rawStyle = processColor(rawStyle);
+      } else if (styleType === 'image' && typeof rawStyle === 'number') {
+        rawStyle = resolveAssetSource(rawStyle) || {};
       }
-      const mapboxStyle = this._getMapboxStyleSheet(style);
-      flattenStyle = Object.assign(flattenStyle, mapboxStyle);
+
+      const bridgeValue = new BridgeValue(rawStyle);
+      nativeStyle[styleProp] = {
+        styletype: styleType,
+        stylevalue: bridgeValue.toJSON(),
+      };
     }
 
-    return flattenStyle;
+    return nativeStyle;
   }
 
-  _getMapboxStyleSheet(style) {
-    return MapboxStyleSheet.create(style);
+  setNativeProps(props) {
+    if (this.refs.nativeLayer) {
+      this.refs.nativeLayer.setNativeProps(props);
+    }
   }
 }
 

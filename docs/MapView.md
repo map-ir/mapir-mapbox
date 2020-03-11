@@ -1,4 +1,4 @@
-## <MapboxGL.MapView />
+## <Mapir />
 ### MapView backed by Mapbox Native GL
 
 ### props

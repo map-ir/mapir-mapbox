@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { NativeModules, requireNativeComponent } from 'react-native';
+import {NativeModules, requireNativeComponent} from 'react-native';
+import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource';
 
 import {
   toJSONString,
@@ -9,7 +10,7 @@ import {
   isFunction,
 } from '../utils';
 
-import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource';
+import AbstractSource from './AbstractSource';
 
 const MapboxGL = NativeModules.MGLModule;
 
@@ -19,8 +20,10 @@ export const NATIVE_MODULE_NAME = 'RCTMGLShapeSource';
  * ShapeSource is a map content source that supplies vector shapes to be shown on the map.
  * The shape may be a url or a GeoJSON object
  */
-class ShapeSource extends React.Component {
+class ShapeSource extends AbstractSource {
   static NATIVE_ASSETS_KEY = 'assets';
+
+  static imageSourcePrefix = '__shape_source_images__';
 
   static propTypes = {
     ...viewPropTypes,
@@ -85,6 +88,8 @@ class ShapeSource extends React.Component {
      * Specifies the external images in key-value pairs required for the shape source.
      * If you have an asset under Image.xcassets on iOS and the drawables directory on android
      * you can specify an array of string names with assets as the key `{ assets: ['pin'] }`.
+     * 
+     * Deprecated, please use Images#images.
      */
     images: PropTypes.object,
 
@@ -107,11 +112,21 @@ class ShapeSource extends React.Component {
     id: MapboxGL.StyleSource.DefaultSourceID,
   };
 
+  setNativeProps(props) {
+    const shallowProps = Object.assign({}, props);
+
+    // Adds support for Animated
+    if (shallowProps.shape && typeof shallowProps !== 'string') {
+      shallowProps.shape = JSON.stringify(shallowProps.shape);
+    }
+
+    super.setNativeProps(shallowProps);
+  }
+
   _getShape() {
     if (!this.props.shape) {
       return;
     }
-    // TODO: Add turf validation and throw exeception
     return toJSONString(this.props.shape);
   }
 
@@ -119,12 +134,15 @@ class ShapeSource extends React.Component {
     if (!this.props.images) {
       return;
     }
+    if (!this.props.id.startsWith(ShapeSource.imageSourcePrefix)) {
+      console.warn("ShapeSource#images is deprecated, please use Images#images")
+    }
 
-    let images = {};
+    const images = {};
     let nativeImages = [];
 
     const imageNames = Object.keys(this.props.images);
-    for (let imageName of imageNames) {
+    for (const imageName of imageNames) {
       if (
         imageName === ShapeSource.NATIVE_ASSETS_KEY &&
         Array.isArray(this.props.images[ShapeSource.NATIVE_ASSETS_KEY])
@@ -140,8 +158,8 @@ class ShapeSource extends React.Component {
     }
 
     return {
-      images: images,
-      nativeImages: nativeImages,
+      images,
+      nativeImages,
     };
   }
 
@@ -162,8 +180,9 @@ class ShapeSource extends React.Component {
       ...this._getImages(),
       onPress: undefined,
     };
+
     return (
-      <RCTMGLShapeSource {...props}>
+      <RCTMGLShapeSource ref="nativeSource" {...props}>
         {cloneReactChildrenWithProps(this.props.children, {
           sourceID: this.props.id,
         })}

@@ -1,12 +1,16 @@
 apply plugin: 'com.android.library'
 
+def safeExtGet(prop, fallback) {
+    rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
+}
+
 android {
-    compileSdkVersion 28
-    buildToolsVersion '28.0.3'
+    compileSdkVersion safeExtGet("compileSdkVersion", 28)
+    buildToolsVersion safeExtGet("buildToolsVersion", '28.0.3')
 
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 28
+        minSdkVersion safeExtGet('minSdkVersion', 16)
+        targetSdkVersion safeExtGet('targetSdkVersion', 26)
         versionCode 1
         versionName "1.0"
     }
@@ -26,13 +30,18 @@ dependencies {
     compileOnly "com.facebook.react:react-native:+"
 
     // Mapbox SDK
-    implementation 'com.mapbox.mapboxsdk:mapbox-android-services:2.2.9'
 
-    implementation('com.mapbox.mapboxsdk:mapbox-android-sdk:5.5.2@aar') {
-        transitive=true
-    }
+    implementation 'com.mapbox.mapboxsdk:mapbox-sdk-services:4.8.0'
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:8.0.0'
+
+    // Dependencies
+    implementation "com.android.support:support-vector-drawable:${safeExtGet('supportLibVersion', '28.0.0')}"
+    implementation "com.android.support:support-annotations:${safeExtGet('supportLibVersion', '28.0.0')}"
+    implementation "com.android.support:appcompat-v7:${safeExtGet('supportLibVersion', '28.0.0')}"
+    implementation "com.squareup.okhttp3:okhttp:${safeExtGet('okhttpVersion', '3.12.1')}"
 
     // Mapbox plugins
-    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-localization:0.1.0'
-    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer:0.3.0'
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-localization-v7:0.9.0'
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-markerview-v7:0.2.0'
+    implementation 'com.mapbox.mapboxsdk:mapbox-sdk-turf:4.8.0'
 }

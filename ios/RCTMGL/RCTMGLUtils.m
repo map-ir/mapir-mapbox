@@ -22,10 +22,29 @@ static double const MS_TO_S = 0.001;
     return feature.coordinate;
 }
 
++ (UIEdgeInsets)toUIEdgeInsets:(NSArray<NSNumber *> *)arr
+{
+    return UIEdgeInsetsMake([arr[0] floatValue], [arr[1] floatValue], [arr[2] floatValue], [arr[3] floatValue]);
+}
+
 + (MGLShape*)shapeFromGeoJSON:(NSString*)jsonStr
 {
     NSData* data = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
-    return [MGLShape shapeWithData:data encoding:NSUTF8StringEncoding error:nil];
+    NSError* error = nil;
+    MGLShape* result = [MGLShape shapeWithData:data encoding:NSUTF8StringEncoding error:&error];
+    if (error != nil) {
+      RCTLogWarn(@"Failed to convert data to shape error:%@ src:%@", error, jsonStr);
+    }
+    return result;
+}
+
++ (NSString *)hashURI:(NSString *)uri
+{
+    if (uri == nil) {
+        return @"-1";
+    }
+    NSUInteger hash = [uri hash];
+    return [NSString stringWithFormat:@"%lu", (unsigned long)hash];
 }
 
 + (MGLCoordinateBounds)fromFeatureCollection:(NSString*)jsonStr
@@ -54,7 +73,9 @@ static double const MS_TO_S = 0.001;
 
 + (NSNumber*)clamp:(NSNumber *)value min:(NSNumber *)min max:(NSNumber *)max
 {
-    return MAX(MIN(value, max), min);
+    if ([value doubleValue] < [min doubleValue]) return min;
+    if ([value doubleValue] > [max doubleValue]) return max;
+    return value;
 }
 
 + (UIColor*)toColor:(id)value
@@ -67,12 +88,12 @@ static double const MS_TO_S = 0.001;
     return CGVectorMake([arr[0] floatValue], [arr[1] floatValue]);
 }
 
-+ (void)fetchImage:(RCTBridge*)bridge url:(NSString *)url callback:(RCTImageLoaderCompletionBlock)callback
++ (void)fetchImage:(RCTBridge*)bridge url:(NSString *)url scale:(double)scale callback:(RCTImageLoaderCompletionBlock)callback
 {
-    [RCTMGLImageQueue.sharedInstance addImage:url bridge:bridge completionHandler:callback];
+    [RCTMGLImageQueue.sharedInstance addImage:url scale:scale bridge:bridge completionHandler:callback];
 }
 
-+ (void)fetchImages:(RCTBridge *)bridge style:(MGLStyle *)style objects:(NSDictionary<NSString *, NSString *>*)objects callback:(void (^)())callback
++ (void)fetchImages:(RCTBridge *)bridge style:(MGLStyle *)style objects:(NSDictionary<NSString *, NSString *>*)objects forceUpdate:(BOOL)forceUpdate callback:(void (^)())callback
 {
     if (objects == nil) {
         callback();
@@ -97,14 +118,19 @@ static double const MS_TO_S = 0.001;
     };
     
     for (NSString *imageName in imageNames) {
-        UIImage *foundImage = [style imageForName:imageName];
+        UIImage *foundImage = forceUpdate ? nil : [style imageForName:imageName];
         
-        if (foundImage == nil) {
-            [RCTMGLImageQueue.sharedInstance addImage:objects[imageName] bridge:bridge completionHandler:^(NSError *error, UIImage *image) {
+        if (forceUpdate || foundImage == nil) {
+            [RCTMGLImageQueue.sharedInstance addImage:objects[imageName] scale:1.0 bridge:bridge completionHandler:^(NSError *error, UIImage *image) {
+              if (!image) {
+                RCTLogWarn(@"Failed to fetch image: %@ error:%@", imageName, error);
+              }
+              else {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [weakStyle setImage:image forName:imageName];
                     imageLoadedBlock();
                 });
+              }
             }];
         } else {
             imageLoadedBlock();

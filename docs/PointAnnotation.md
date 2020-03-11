@@ -1,4 +1,4 @@
-## <MapboxGL.PointAnnotation />
+## <Mapir.Marker />
 ### PointAnnotation represents a one-dimensional shape located at a single geographical coordinate.
 
 ### props
