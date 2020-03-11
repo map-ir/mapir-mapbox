@@ -118,7 +118,7 @@
     }
   },
   "scripts": {
-    "fetch:ios:sdk": "node ./scripts/download-mapbox-gl-native-ios-if-on-mac.js 2.2.0",
+    "fetch:ios:sdk": "node ./scripts/download-mapbox-gl-native-ios-if-on-mac.js 2.2.1",
     "fetch:style:spec": ". ./scripts/download-style-spec.sh",
     "format": "npm run lint -- --fix",
     "generate": "node ./scripts/autogenerate",
