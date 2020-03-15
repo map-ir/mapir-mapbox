@@ -5,8 +5,8 @@
 To install with CocoaPods, add the following to your `Podfile`:
 
 ```
-  # Mapbox
-  pod 'react-native-mapbox-gl', :path => '../node_modules/@react-native-mapbox-gl/maps'
+  # Map.ir
+  pod 'mapir-react-native', :path => '../node_modules/mapir-mapbox'
 
   # Make also sure you have use_frameworks! enabled
   use_frameworks!
