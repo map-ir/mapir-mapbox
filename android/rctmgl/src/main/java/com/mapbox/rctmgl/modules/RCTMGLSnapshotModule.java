@@ -15,6 +15,7 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.module.annotations.ReactModule;
 import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.FeatureCollection;
 import com.mapbox.geojson.Point;
@@ -37,8 +38,9 @@ import static android.content.Context.CONTEXT_IGNORE_SECURITY;
  * Created by nickitaliano on 11/30/17.
  */
 
+@ReactModule(name = RCTMGLSnapshotModule.REACT_CLASS)
 public class RCTMGLSnapshotModule extends ReactContextBaseJavaModule {
-    public static final String REACT_CLASS = RCTMGLSnapshotModule.class.getSimpleName();
+    public static final String REACT_CLASS = "RCTMGLSnapshotModule";
 
     private ReactApplicationContext mContext;
 
@@ -103,6 +105,7 @@ public class RCTMGLSnapshotModule extends ReactContextBaseJavaModule {
                 (int) jsOptions.getDouble("width"),
                 (int) jsOptions.getDouble("height"));
 
+        options.withLogo(jsOptions.getBoolean("withLogo"));
         options.withStyle(jsOptions.getString("styleURL"));
         options.withPixelRatio(Float.valueOf(mContext.getResources().getDisplayMetrics().scaledDensity).intValue());
 

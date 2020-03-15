@@ -10,7 +10,6 @@
 #import "RCTMGLSource.h"
 #import "RCTMGLStyleValue.h"
 #import "RCTMGLUtils.h"
-#import "FilterParser.h"
 #import "RCTMGLMapView.h"
 
 @implementation RCTMGLLayer
@@ -68,18 +67,17 @@
     _layerIndex = layerIndex;
     if (_styleLayer != nil) {
         [self removeFromMap:_style];
-        [self insertAtIndex:(NSUInteger)_layerIndex];
+        [self insertAtIndex:_layerIndex.unsignedIntegerValue];
     }
 }
 
-- (void)setFilter:(NSArray<NSDictionary<NSString *,id> *> *)filter
-{
-    _filter = filter;
-    
-    if (_styleLayer != nil) {
-        NSPredicate *predicate = [self buildFilters];
-        
-        [self updateFilter:predicate];
+- (void)setMap:(RCTMGLMapView *)map {
+    if (map == nil) {
+        [self removeFromMap:_map.style];
+        _map = nil;
+    } else {
+        _map = map;
+        [self addToMap:map style:map.style];
     }
 }
 
@@ -96,6 +94,9 @@
 
 - (void)addToMap:(RCTMGLMapView*) map style:(MGLStyle *)style
 {
+    if (style == nil) {
+        return;
+    }
     _map = map;
     _style = style;
     if (_id == nil) {
@@ -140,11 +141,6 @@
     // override if you want
 }
 
-- (void)updateFilter:(NSPredicate *)predicate
-{
-    // override if you want to update the filter
-}
-
 - (void)insertLayer: (RCTMGLMapView*) map
 {
     if ([_style layerWithIdentifier:_id] != nil) {
@@ -156,7 +152,7 @@
     } else if (_belowLayerID != nil) {
         [self insertBelow:_belowLayerID];
     } else if (_layerIndex != nil) {
-        [self insertAtIndex:(NSUInteger)_layerIndex];
+        [self insertAtIndex:_layerIndex.unsignedIntegerValue];
     } else {
         [_style addLayer:_styleLayer];
         [_map layerAdded:_styleLayer];
@@ -204,6 +200,11 @@
     if (![self _hasInitialized]) {
         return;
     }
+    NSArray *layers = _style.layers;
+    if (index >= layers.count) {
+        RCTLogWarn(@"Layer index is greater than number of layers on map. Layer inserted at end of layer stack.");
+        index = layers.count - 1;
+    }
     [_style insertLayer:_styleLayer atIndex:index];
     [_map layerAdded:_styleLayer];
 }
@@ -218,11 +219,6 @@
             [_style setImage:image forName:url];
         }
     }];
-}
-
-- (NSPredicate*)buildFilters
-{
-    return [FilterParser parse:_filter];
 }
 
 - (BOOL)_hasInitialized

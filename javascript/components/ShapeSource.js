@@ -88,7 +88,7 @@ class ShapeSource extends AbstractSource {
      * Specifies the external images in key-value pairs required for the shape source.
      * If you have an asset under Image.xcassets on iOS and the drawables directory on android
      * you can specify an array of string names with assets as the key `{ assets: ['pin'] }`.
-     * 
+     *
      * Deprecated, please use Images#images.
      */
     images: PropTypes.object,
@@ -96,6 +96,9 @@ class ShapeSource extends AbstractSource {
     /**
      * Source press listener, gets called when a user presses one of the children layers only
      * if that layer has a higher z-index than another source layers
+     *
+     * @param {NativeSyntheticEvent<GeoJSONFeatureEvent>} event - event with geojson feature as payload
+     * @return void
      */
     onPress: PropTypes.func,
 
@@ -135,7 +138,9 @@ class ShapeSource extends AbstractSource {
       return;
     }
     if (!this.props.id.startsWith(ShapeSource.imageSourcePrefix)) {
-      console.warn("ShapeSource#images is deprecated, please use Images#images")
+      console.warn(
+        'ShapeSource#images is deprecated, please use Images#images',
+      );
     }
 
     const images = {};
@@ -153,7 +158,7 @@ class ShapeSource extends AbstractSource {
 
       const res = resolveAssetSource(this.props.images[imageName]);
       if (res && res.uri) {
-        images[imageName] = res.uri;
+        images[imageName] = res;
       }
     }
 

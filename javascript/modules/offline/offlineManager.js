@@ -91,6 +91,19 @@ class OfflineManager {
   }
 
   /**
+   * Deletes the existing database, which includes both the ambient cache and offline packs, then reinitializes it.
+   *
+   * @example
+   * await MapboxGL.offlineManager.resetDatabase();
+   *
+   * @return {void}
+   */
+  async resetDatabase() {
+    await this._initialize();
+    await MapboxGLOfflineManager.resetDatabase();
+  }
+
+  /**
    * Retrieves all the current offline packs that are stored in the database.
    *
    * @example
@@ -117,6 +130,20 @@ class OfflineManager {
   async getPack(name) {
     await this._initialize();
     return this._offlinePacks[name];
+  }
+
+  /**
+   * Sideloads offline db
+   *
+   * @example
+   * await MapboxGL.offlineManager.mergeOfflineRegions(path);
+   *
+   * @param {String} path Path to offline tile db on file system.
+   * @return {void}
+   */
+  async mergeOfflineRegions(path) {
+    await this._initialize();
+    return MapboxGLOfflineManager.mergeOfflineRegions(path);
   }
 
   /**

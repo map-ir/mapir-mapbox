@@ -8,7 +8,7 @@
 
 #import "RCTMGLSymbolLayer.h"
 #import "RCTMGLStyle.h"
-#import <React/UIView+React.h>
+#import "UIView+React.h"
 #import <React/RCTLog.h>
 
 @implementation RCTMGLSymbolLayer
@@ -49,25 +49,6 @@
 }
 #pragma clang diagnostic pop
 
-- (void)updateFilter:(NSPredicate *)predicate
-{
-    @try {
-        ((MGLSymbolStyleLayer *) self.styleLayer).predicate = predicate;
-    }
-    @catch (NSException* exception) {
-        RCTLogError(@"Invalid predicate: %@ on layer %@ - %@ reason: %@", predicate, self, exception.name, exception.reason);
-    }
-}
-
-- (void)setSourceLayerID:(NSString *)sourceLayerID
-{
-    _sourceLayerID = sourceLayerID;
-    
-    if (self.styleLayer != nil) {
-        ((MGLSymbolStyleLayer*) self.styleLayer).sourceLayerIdentifier = _sourceLayerID;
-    }
-}
-
 - (void)setSnapshot:(BOOL)snapshot
 {
     _snapshot = snapshot;
@@ -93,8 +74,7 @@
 
 - (void)addedToMap
 {
-    NSPredicate *filter = [self buildFilters];
-    [self updateFilter:filter];
+    [super addedToMap];
     
     if (_snapshot == YES) {
         UIImage *image = [self _createViewSnapshot];
@@ -112,7 +92,7 @@
 {
     MGLSource *source = [style sourceWithIdentifier:self.sourceID];
     MGLSymbolStyleLayer *layer = [[MGLSymbolStyleLayer alloc] initWithIdentifier:self.id source:source];
-    layer.sourceLayerIdentifier = _sourceLayerID;
+    layer.sourceLayerIdentifier = self.sourceLayerID;
     return layer;
 }
 

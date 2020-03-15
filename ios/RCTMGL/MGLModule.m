@@ -11,6 +11,7 @@
 #import "MGLOfflineModule.h"
 #import "CameraMode.h"
 #import "RCTMGLSource.h"
+#import "MGLCustomHeaders.h"
 @import Mapbox;
 
 @implementation MGLModule
@@ -26,12 +27,12 @@ RCT_EXPORT_MODULE();
 {
     // style urls
     NSMutableDictionary *styleURLS = [[NSMutableDictionary alloc] init];
-//    [styleURLS setObject:[MGLStyle.streetsStyleURL absoluteString] forKey:@"Street"];
-//    [styleURLS setObject:[MGLStyle.darkStyleURL absoluteString] forKey:@"Dark"];
-//    [styleURLS setObject:[MGLStyle.lightStyleURL absoluteString] forKey:@"Light"];
-//    [styleURLS setObject:[MGLStyle.outdoorsStyleURL absoluteString] forKey:@"Outdoors"];
-//    [styleURLS setObject:[MGLStyle.satelliteStyleURL absoluteString] forKey:@"Satellite"];
-//    [styleURLS setObject:[MGLStyle.satelliteStreetsStyleURL absoluteString] forKey:@"SatelliteStreet"];
+    [styleURLS setObject:[MGLStyle.streetsStyleURL absoluteString] forKey:@"Street"];
+    [styleURLS setObject:[MGLStyle.darkStyleURL absoluteString] forKey:@"Dark"];
+    [styleURLS setObject:[MGLStyle.lightStyleURL absoluteString] forKey:@"Light"];
+    [styleURLS setObject:[MGLStyle.outdoorsStyleURL absoluteString] forKey:@"Outdoors"];
+    [styleURLS setObject:[MGLStyle.satelliteStyleURL absoluteString] forKey:@"Satellite"];
+    [styleURLS setObject:[MGLStyle.satelliteStreetsStyleURL absoluteString] forKey:@"SatelliteStreet"];
 
     // event types
     NSMutableDictionary *eventTypes = [[NSMutableDictionary alloc] init];
@@ -42,7 +43,7 @@ RCT_EXPORT_MODULE();
     [eventTypes setObject:RCT_MAPBOX_REGION_DID_CHANGE forKey:@"RegionDidChange"];
     [eventTypes setObject:RCT_MAPBOX_WILL_START_LOADING_MAP forKey:@"WillStartLoadingMap"];
     [eventTypes setObject:RCT_MAPBOX_DID_FINISH_LOADING_MAP forKey:@"DidFinishLoadingMap"];
-    [eventTypes setObject:RCT_MAPBOX_DID_FAIL_LOADING_MAP forKey:@"DidFailLaodingMap"];
+    [eventTypes setObject:RCT_MAPBOX_DID_FAIL_LOADING_MAP forKey:@"DidFailLoadingMap"];
     [eventTypes setObject:RCT_MAPBOX_WILL_START_RENDERING_FRAME forKey:@"WillStartRenderingFrame"];
     [eventTypes setObject:RCT_MAPBOX_DID_FINSIH_RENDERING_FRAME forKey:@"DidFinishRenderingFrame"];
     [eventTypes setObject:RCT_MAPBOX_DID_FINISH_RENDERING_FRAME_FULLY forKey:@"DidFinishRenderingFrameFully"];
@@ -241,6 +242,16 @@ RCT_EXPORT_METHOD(setAccessToken:(NSString *)accessToken)
     [MGLAccountManager setAccessToken:accessToken];
 }
 
+RCT_EXPORT_METHOD(addCustomHeader:(NSString *)headerName forHeaderValue:(NSString *) headerValue)
+{
+    [MGLCustomHeaders.sharedInstance addHeader:headerValue forHeaderName:headerName];
+}
+
+RCT_EXPORT_METHOD(removeCustomHeader:(NSString *)headerName)
+{
+    [MGLCustomHeaders.sharedInstance removeHeader:headerName];
+}
+
 RCT_EXPORT_METHOD(getAccessToken:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
     NSString *accessToken = MGLAccountManager.accessToken;
@@ -253,7 +264,7 @@ RCT_EXPORT_METHOD(getAccessToken:(RCTPromiseResolveBlock)resolve rejecter:(RCTPr
     reject(@"missing_access_token", @"No access token has been set", nil);
 }
 
-RCT_EXPORT_METHOD(setTelemetryEnabled:(BOOL *)telemetryEnabled)
+RCT_EXPORT_METHOD(setTelemetryEnabled:(BOOL)telemetryEnabled)
 {
     [[NSUserDefaults standardUserDefaults] setBool:telemetryEnabled
                                             forKey:@"MGLMapboxMetricsEnabled"];

@@ -113,6 +113,32 @@ RCT_EXPORT_METHOD(createPack:(NSDictionary *)options
                                               }];
 }
 
+RCT_EXPORT_METHOD(mergeOfflineRegions:(NSString *)path
+                  resolver:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject)
+{
+    NSString *absolutePath;
+    if ([path isAbsolutePath]) {
+        absolutePath = path;
+    } else {
+        NSBundle *mainBundle = [NSBundle mainBundle];
+        NSString *fileName = [path stringByDeletingPathExtension];
+        NSString *extension = [path pathExtension];
+        absolutePath = [mainBundle pathForResource:fileName ofType:extension];
+        if (!absolutePath) {
+            return reject(@"asset_does_not_exist", [NSString stringWithFormat:@"The given assetName, %@, can't be found in the app's bundle.", path], nil);
+        }
+    }
+    
+    [[MGLOfflineStorage sharedOfflineStorage] addContentsOfFile:absolutePath withCompletionHandler:^(NSURL *fileURL, NSArray<MGLOfflinePack *> *packs, NSError *error) {
+        if (error != nil) {
+            reject(@"mergeOfflineRegions", error.description, error);
+            return;
+        }
+        resolve(nil);
+    }];
+}
+
 RCT_EXPORT_METHOD(getPacks:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -126,6 +152,18 @@ RCT_EXPORT_METHOD(getPacks:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseR
 
         resolve([self _convertPacksToJson:packs]);
     });
+}
+
+RCT_EXPORT_METHOD(resetDatabase:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+{
+    [[MGLOfflineStorage sharedOfflineStorage] resetDatabaseWithCompletionHandler:^(NSError *error) {
+        if (error != nil) {
+            reject(@"resetDatabase", error.description, error);
+            return;
+        }
+        resolve(nil);
+    }];
+    
 }
 
 RCT_EXPORT_METHOD(getPackStatus:(NSString *)name
@@ -153,7 +191,11 @@ RCT_EXPORT_METHOD(deletePack:(NSString *)name
         resolve(nil);
         return;
     }
-    
+    if (pack.state == MGLOfflinePackStateInvalid) {
+        NSError *error = [NSError errorWithDomain:MGLErrorDomain code:1 userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Pack has already been deleted", nil)}];
+        reject(@"deletePack", error.description, error);
+        return;
+    }
     [[MGLOfflineStorage sharedOfflineStorage] removePack:pack withCompletionHandler:^(NSError *error) {
         if (error != nil) {
             reject(@"deletePack", error.description, error);
@@ -216,7 +258,11 @@ RCT_EXPORT_METHOD(setProgressEventThrottle:(nonnull NSNumber *)throttleValue)
 - (void)offlinePackProgressDidChange:(NSNotification *)notification
 {
     MGLOfflinePack *pack = notification.object;
-    
+  
+    if (pack.state == MGLOfflinePackStateInvalid) {
+        return; // Avoid invalid offline pack exception
+    }
+  
     if ([self _shouldSendProgressEvent:[self _getCurrentTimestamp] pack:pack]) {
         NSDictionary *metadata = [self _unarchiveMetadata:pack];
         RCTMGLEvent *event = [self _makeProgressEvent:metadata[@"name"] pack:pack];
@@ -230,6 +276,9 @@ RCT_EXPORT_METHOD(setProgressEventThrottle:(nonnull NSNumber *)throttleValue)
 - (void)offlinePackDidReceiveError:(NSNotification *)notification
 {
     MGLOfflinePack *pack = notification.object;
+    if (pack.state == MGLOfflinePackStateInvalid) {
+        return; // Avoid invalid offline pack exception
+    }
     NSDictionary *metadata = [self _unarchiveMetadata:pack];
     
     NSString *name = metadata[@"name"];
@@ -281,6 +330,10 @@ RCT_EXPORT_METHOD(setProgressEventThrottle:(nonnull NSNumber *)throttleValue)
     // }
     if ([data isKindOfClass:[NSDictionary class]]) {
         return data;
+    }
+    
+    if (data == nil) {
+        return @{};
     }
     
     return [NSJSONSerialization JSONObjectWithData:[data dataUsingEncoding:NSUTF8StringEncoding]

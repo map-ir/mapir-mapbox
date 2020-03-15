@@ -23,6 +23,7 @@
 @end
 
 typedef void (^FoundLayerBlock) (MGLStyleLayer* layer);
+typedef void (^StyleLoadedBlock) (MGLStyle* style);
 
 @interface RCTMGLMapView : MGLMapView<RCTInvalidating>
 
@@ -30,22 +31,31 @@ typedef void (^FoundLayerBlock) (MGLStyleLayer* layer);
 @property (nonatomic, weak) id<RCTMGLMapViewCamera> reactCamera;
 @property (nonatomic, strong) NSMutableArray<id<RCTComponent>> *reactSubviews;
 @property (nonatomic, strong) NSMutableArray<RCTMGLSource*> *sources;
+@property (nonatomic, strong) NSMutableArray<RCTMGLLayer*> *layers;
 @property (nonatomic, strong) NSMutableArray<RCTMGLPointAnnotation*> *pointAnnotations;
 @property (nonatomic, strong) RCTMGLLight *light;
 @property (nonatomic, copy) NSArray<NSNumber *> *reactContentInset;
 
 @property (nonatomic, strong) NSMutableDictionary<NSString*, NSMutableArray<FoundLayerBlock>*> *layerWaiters;
+@property (nonatomic, strong) NSMutableArray<StyleLoadedBlock> *styleWaiters;
 
 @property (nonatomic, assign) BOOL reactLocalizeLabels;
 @property (nonatomic, assign) BOOL reactScrollEnabled;
 @property (nonatomic, assign) BOOL reactPitchEnabled;
 @property (nonatomic, assign) BOOL reactRotateEnabled;
 @property (nonatomic, assign) BOOL reactAttributionEnabled;
+@property (nonatomic, strong) NSDictionary<NSString *, NSNumber *> *reactAttributionPosition;
 @property (nonatomic, assign) BOOL reactLogoEnabled;
 @property (nonatomic, assign) BOOL reactCompassEnabled;
 @property (nonatomic, assign) BOOL reactZoomEnabled;
 
+@property (nonatomic, assign) NSInteger *reactCompassViewPosition;
+@property (nonatomic, assign) CGPoint reactCompassViewMargins;
+
 @property (nonatomic, copy) NSString *reactStyleURL;
+@property (nonatomic, assign) NSInteger *reactPreferredFramesPerSecond;
+
+@property (nonatomic, assign) MGLCoordinateBounds maxBounds;
 
 @property (nonatomic, assign) BOOL isUserInteraction;
 
@@ -68,5 +78,9 @@ typedef void (^FoundLayerBlock) (MGLStyleLayer* layer);
 - (void)didChangeUserTrackingMode:(MGLUserTrackingMode)mode animated:(BOOL)animated;
 
 - (void)waitForLayerWithID:(nonnull NSString*)layerID then:(void (^)(MGLStyleLayer* layer))foundLayer;
+
+- (void)setSourceVisibility:(BOOL)visiblity sourceId:(nonnull NSString*)sourceId sourceLayerId:(nullable NSString*)sourceLayerId;
+
+- (void)notifyStyleLoaded;
 
 @end

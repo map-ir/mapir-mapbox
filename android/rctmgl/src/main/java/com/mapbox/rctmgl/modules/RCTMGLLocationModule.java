@@ -8,6 +8,7 @@ import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.module.annotations.ReactModule;
 import com.facebook.react.modules.core.RCTNativeAppEventEmitter;
 import com.mapbox.android.core.location.LocationEngineCallback;
 import com.mapbox.android.core.location.LocationEngineResult;
@@ -16,11 +17,13 @@ import com.mapbox.rctmgl.events.IEvent;
 import com.mapbox.rctmgl.events.LocationEvent;
 import com.mapbox.rctmgl.location.LocationManager;
 
+@ReactModule(name = RCTMGLLocationModule.REACT_CLASS)
 public class RCTMGLLocationModule extends ReactContextBaseJavaModule {
-    public static final String REACT_CLASS = RCTMGLLocationModule.class.getSimpleName();
+    public static final String REACT_CLASS = "RCTMGLLocationModule";
     public static final String LOCATION_UPDATE = "MapboxUserLocationUpdate";
 
     private boolean isEnabled;
+    private float mMinDisplacement;
     private boolean isPaused;
 
     private LocationManager locationManager;
@@ -67,10 +70,26 @@ public class RCTMGLLocationModule extends ReactContextBaseJavaModule {
         return REACT_CLASS;
     }
 
+
     @ReactMethod
-    public void start() {
+    public void start(float minDisplacement) {
         isEnabled = true;
+        mMinDisplacement = minDisplacement;
         startLocationManager();
+    }
+
+    @ReactMethod
+    public void setMinDisplacement(float minDisplacement) {
+        if (mMinDisplacement == minDisplacement) return;
+        mMinDisplacement = minDisplacement;
+        if (isEnabled) {
+
+            // set minimal displacement in the manager
+            locationManager.setMinDisplacement(mMinDisplacement);
+
+            // refresh values in location engine request
+            locationManager.enable();
+        }
     }
 
     @ReactMethod
@@ -105,6 +124,7 @@ public class RCTMGLLocationModule extends ReactContextBaseJavaModule {
 
     private void startLocationManager() {
         locationManager.addLocationListener(onUserLocationChangeCallback);
+        locationManager.setMinDisplacement(mMinDisplacement);
         locationManager.enable();
         isPaused = false;
     }

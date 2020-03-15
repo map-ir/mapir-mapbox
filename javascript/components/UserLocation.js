@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {NativeModules, requireNativeComponent} from 'react-native';
 
-import {viewPropTypes} from '../utils';
 import locationManager from '../modules/location/locationManager';
 
-import Annotation from './annotations/Annotation';
+import Annotation from './annotations/Annotation'; // eslint-disable-line import/no-cycle
 import CircleLayer from './CircleLayer';
 
 const mapboxBlue = 'rgba(51, 181, 229, 100)';
@@ -50,26 +48,47 @@ const normalIcon = [
   />,
 ];
 
-const compassIcon = null;
-const navigationIcon = null;
-
 class UserLocation extends React.Component {
   static propTypes = {
+    /**
+     * Whether location icon is animated between updates
+     */
     animated: PropTypes.bool,
 
+    /**
+     * Rendermode of user location icon.
+     * One of `"normal"`, `"custom"`.
+     * "custom" must be of type mapbox-gl-native components
+     */
     renderMode: PropTypes.oneOf(['normal', 'custom']),
 
+    /**
+     * Whether location icon is visible
+     */
     visible: PropTypes.bool,
 
+    /**
+     * Callback that is triggered on location icon press
+     */
     onPress: PropTypes.func,
+
+    /**
+     * Callback that is triggered on location update
+     */
     onUpdate: PropTypes.func,
 
+    minDisplacement: PropTypes.number,
+
+    /**
+     * Custom location icon of type mapbox-gl-native components
+     */
     children: PropTypes.any,
   };
 
   static defaultProps = {
     animated: true,
     visible: true,
+    minDisplacement: 0,
     renderMode: 'normal',
   };
 
@@ -90,39 +109,52 @@ class UserLocation extends React.Component {
   }
 
   async componentDidMount() {
-    const lastKnownLocation = await locationManager.getLastKnownLocation();
-
-    if (lastKnownLocation) {
-      this.setState({
-        coordinates: this._getCoordinatesFromLocation(lastKnownLocation),
-      });
-    }
-
     locationManager.addListener(this._onLocationUpdate);
-    this.setLocationManager({
+    await this.setLocationManager({
       running: this.needsLocationManagerRunning(),
     });
   }
 
   locationManagerRunning = false;
 
-  setLocationManager({running}) {
+  /**
+   * Whether to start or stop the locationManager
+   * Notice, that locationManager will start automatically when
+   * either `onUpdate` or `visible` are set
+   *
+   * @param {Object} running - Object with key `running` and `boolean` value
+   * @return {void}
+   */
+  setLocationManager = async ({running}) => {
     if (this.locationManagerRunning !== running) {
+      this.locationManagerRunning = running;
       if (running) {
         locationManager.start();
-      } else {
-        locationManager.stop();
+
+        const lastKnownLocation = await locationManager.getLastKnownLocation();
+
+        if (lastKnownLocation) {
+          this.setState({
+            coordinates: this._getCoordinatesFromLocation(lastKnownLocation),
+          });
+        }
       }
     }
-  }
+  };
 
+  /**
+   *
+   * If locationManager should be running
+   *
+   * @return {void}
+   */
   needsLocationManagerRunning() {
     return this.props.onUpdate || this.props.visible;
   }
 
-  componentWillUnmount() {
+  async componentWillUnmount() {
     locationManager.removeListener(this._onLocationUpdate);
-    this.setLocationManager({running: false});
+    await this.setLocationManager({running: false});
   }
 
   _onLocationUpdate(location) {
@@ -142,7 +174,7 @@ class UserLocation extends React.Component {
     return [location.coords.longitude, location.coords.latitude];
   }
 
-  get userIconLayers() {
+  _userIconLayers() {
     switch (this.props.renderMode) {
       case UserLocation.RenderMode.Normal:
         return normalIcon;
@@ -151,10 +183,14 @@ class UserLocation extends React.Component {
     }
   }
 
-  componentDidUpdate() {
-    this.setLocationManager({
+  async componentDidUpdate(prevProps) {
+    await this.setLocationManager({
       running: this.needsLocationManagerRunning(),
     });
+
+    if (this.props.minDisplacement !== prevProps.minDisplacement) {
+      locationManager.setMinDisplacement(this.props.minDisplacement);
+    }
   }
 
   render() {
@@ -164,7 +200,8 @@ class UserLocation extends React.Component {
 
     const children = this.props.children
       ? this.props.children
-      : this.userIconLayers;
+      : this._userIconLayers();
+
     return (
       <Annotation
         animated={this.props.animated}
@@ -179,3 +216,8 @@ class UserLocation extends React.Component {
 }
 
 export default UserLocation;
+
+// TODO:
+// * why is there even a RenderMode if children are rendered regardless?
+// * why is #userIconLayers a getter?!
+// * state.shouldShowUserLocation is unused
