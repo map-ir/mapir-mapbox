@@ -14,6 +14,7 @@
 #import "RCTMGLCamera.h"
 
 @import Mapbox;
+@import MapirMapKit;
 
 @class CameraUpdateQueue;
 
@@ -25,7 +26,7 @@
 typedef void (^FoundLayerBlock) (MGLStyleLayer* layer);
 typedef void (^StyleLoadedBlock) (MGLStyle* style);
 
-@interface RCTMGLMapView : MGLMapView<RCTInvalidating>
+@interface RCTMGLMapView : SHMapView<RCTInvalidating>
 
 @property (nonatomic, strong) CameraUpdateQueue *cameraUpdateQueue;
 @property (nonatomic, weak) id<RCTMGLMapViewCamera> reactCamera;
