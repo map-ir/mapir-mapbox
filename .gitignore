@@ -78,3 +78,6 @@ android/rctmgl/build
 ios/ios
 ios/Mapbox.framework
 .idea/
+
+# macOS specific ignores
+.DS_Store
