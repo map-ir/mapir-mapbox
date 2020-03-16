@@ -235,7 +235,7 @@ DEPENDENCIES:
   - FBReactNativeSpec (from `../node_modules/react-native/Libraries/FBReactNativeSpec`)
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
-  - mapir-react-native (from `../node_modules/mapir-mapbox`)
+  - "mapir-react-native (from `../node_modules/@react-native-mapbox-gl/maps`)"
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
   - RCTTypeSafety (from `../node_modules/react-native/Libraries/TypeSafety`)
   - React (from `../node_modules/react-native/`)
@@ -280,7 +280,7 @@ EXTERNAL SOURCES:
   glog:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
   mapir-react-native:
-    :path: "../node_modules/mapir-mapbox"
+    :path: "../node_modules/@react-native-mapbox-gl/maps"
   RCTRequired:
     :path: "../node_modules/react-native/Libraries/RCTRequired"
   RCTTypeSafety:
@@ -357,6 +357,6 @@ SPEC CHECKSUMS:
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   Yoga: d8c572ddec8d05b7dba08e4e5f1924004a177078
 
-PODFILE CHECKSUM: b12acb8c1ddc664376a27061665a7f9275963a44
+PODFILE CHECKSUM: 641d4ef7173ee6f1a73daf3a742858699f587c83
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.9.1

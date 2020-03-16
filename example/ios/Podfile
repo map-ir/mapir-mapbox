@@ -32,7 +32,7 @@ target 'RNMapboxGLExample' do
   pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
-  pod 'mapir-react-native', :path => '../node_modules/mapir-mapbox'
+  pod 'mapir-react-native', :path => '../node_modules/@react-native-mapbox-gl/maps'
 
 
   target 'RNMapboxGLExampleTests' do

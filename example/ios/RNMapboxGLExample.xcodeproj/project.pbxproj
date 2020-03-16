@@ -323,7 +323,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 940;
+				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -509,6 +509,7 @@
 				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/491A77E9-7DBC-3309-A93C-BADAE0DDBC6E.bcsymbolmap",
 				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/3F114CA8-302D-327F-87C3-670E0EC63C9A.bcsymbolmap",
 				"${BUILT_PRODUCTS_DIR}/MapboxMobileEvents/MapboxMobileEvents.framework",
+				"${BUILT_PRODUCTS_DIR}/MapirMapKit/MapirMapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/RCTTypeSafety/RCTTypeSafety.framework",
 				"${BUILT_PRODUCTS_DIR}/RNVectorIcons/RNVectorIcons.framework",
 				"${BUILT_PRODUCTS_DIR}/React-Core/React.framework",
@@ -529,7 +530,7 @@
 				"${BUILT_PRODUCTS_DIR}/ReactCommon/ReactCommon.framework",
 				"${BUILT_PRODUCTS_DIR}/Yoga/yoga.framework",
 				"${BUILT_PRODUCTS_DIR}/glog/glog.framework",
-				"${BUILT_PRODUCTS_DIR}/react-native-mapbox-gl/react_native_mapbox_gl.framework",
+				"${BUILT_PRODUCTS_DIR}/mapir-react-native/mapir_react_native.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -543,6 +544,7 @@
 				"${BUILT_PRODUCTS_DIR}/491A77E9-7DBC-3309-A93C-BADAE0DDBC6E.bcsymbolmap",
 				"${BUILT_PRODUCTS_DIR}/3F114CA8-302D-327F-87C3-670E0EC63C9A.bcsymbolmap",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapboxMobileEvents.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapirMapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTTypeSafety.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNVectorIcons.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/React.framework",
@@ -563,7 +565,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactCommon.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/yoga.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/glog.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_mapbox_gl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/mapir_react_native.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -889,6 +891,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -942,6 +945,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
