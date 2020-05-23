@@ -1,7 +1,7 @@
 # iOS Installation
 
 ## Using CocoaPods
-####NOTE: For RN >= 0.60, should be better to use CocoaPods and for RN < 0.60 use Manual installations!
+#### NOTE: For RN >= 0.60, should be better to use CocoaPods and for RN < 0.60 use Manual installations!
 
 To install with CocoaPods, after running `npm i` add the following to your `Podfile`:
 `pod 'react-native-mapbox-gl', :path => '../node_modules/mapir-mapbox'`
