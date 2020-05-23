@@ -9,7 +9,7 @@ _A React Native library for building maps with the [Mapbox Maps SDK for iOS](htt
 
 * [node](https://nodejs.org)
 * [npm](https://www.npmjs.com/)
-* [React Native](https://facebook.github.io/react-native/) (0.59+)
+* [React Native](https://facebook.github.io/react-native/) (0.62+)
 
 **Git**
 ```
