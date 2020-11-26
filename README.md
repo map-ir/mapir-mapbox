@@ -3,62 +3,72 @@
 [![npm version](https://badge.fury.io/js/mapir-mapbox.svg)](https://badge.fury.io/js/mapir-mapbox.svg)
 _A React Native library for building maps with the [Mapbox Maps SDK for iOS](https://www.mapbox.com/ios-sdk/) and [Mapbox Maps SDK for Android](https://www.mapbox.com/android-sdk/)_
 
+
+![Map.ir](https://map.ir/css/images/mapir-logo.png) React Native wrapper for mapbox-gl-js. Expose a bunch of component meant to be simple to use for React Native.
+
+## Get API Key
+🔑 You should first get api key from [Map.ir](https://corp.map.ir/registration/)
+
+
 ## Installation
 
 **Dependencies**
 
 * [node](https://nodejs.org)
 * [npm](https://www.npmjs.com/)
-* [React Native](https://facebook.github.io/react-native/) (0.62+)
+* [React Native](https://facebook.github.io/react-native/) recommended version ^0.62.2
 
-**Git**
 ```
-git clone git@github.com:react-native-mapbox-gl/maps.git
-cd maps
+npm install mapir-react-native-sdk
 ```
 
-**Yarn**
+### Platform Specific Installation Guides
+
+* [Android](https://github.com/map-ir/mapir-mapbox/blob/master/android/install.md)
+* [iOS](https://github.com/map-ir/mapir-mapbox/blob/master/ios/install.md)
+* [example](https://github.com/map-ir/Mapir-react-native-example)
+
+## Quick start 
+
+### Import module
+
+```js
+import React, {Component} from 'react';
+import { SafeAreaView, StyleSheet, View} from 'react-native';
+import Mapir from 'mapir-react-native-sdk'
 ```
-yarn add @react-native-mapbox-gl/maps
+
+### Generate Component
+```jsx
+export default function App() {
+  onRegionDidChange = (e) => {
+    console.log('onRegionDidChange', e.geometry.coordinates);
+  };
+  return (
+    <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
+        <Mapir
+          apiKey={'YOUR_MAPIR_API_KEY'}
+          onRegionDidChange={(e) => onRegionDidChange(e)}
+          style={styles.container}
+        >
+          <Mapir.Camera
+            zoomLevel={13}
+            centerCoordinate={[51.422548, 35.732573]}
+          />
+        </Mapir>
+      </View>
+    </SafeAreaView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
 ```
 
-**Npm**
-```
-npm install @react-native-mapbox-gl/maps --save
-```
+📖 [English Documentation](https://github.com/map-ir/mapir-react-native-sdk/wiki/Documentation)
 
-## Installation Guides
-
-* [Android](/android/install.md)
-* [iOS](/ios/install.md)
-* [Example](/example)
-
-## [Getting Started](/docs/GettingStarted.md)
-
-## Documentation
-
-### Components
-* [MapView](/docs/MapView.md)
-* [Marker](/docs/PointAnnotation.md)
-* [Popup](/docs/Callout.md)
-* [Camera](docs/Camera.md)
-* [UserLocation](docs/UserLocation.md)
-* [Images](docs/Images.md)
-
-### Sources
-* [ShapeSource](/docs/ShapeSource.md)
-* [RasterSource](/docs/RasterSource.md)
-
-### Layers
-* [FillLayer](/docs/FillLayer.md)
-* [LineLayer](/docs/LineLayer.md)
-* [RasterLayer](/docs/RasterLayer.md)
-* [SymbolLayer](/docs/SymbolLayer.md)
-* [HeatmapLayer](/docs/HeatmapLayer.md)
-
-## Expo Support
-We have a feature request open with Expo if you want to see it get in show your support https://expo.canny.io/feature-requests/p/add-mapbox-gl-support
-
-## Developer Group
-
-Have a question or need some help? Join our [Gitter developer group](https://gitter.im/react-native-mapbox-gl/Lobby)!
+📖 [Persian Documentation](https://support.map.ir/developers/reactnative/)
